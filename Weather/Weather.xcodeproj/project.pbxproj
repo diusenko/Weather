@@ -15,6 +15,25 @@
 		3F7B3DC421E73ABD00759A69 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DC221E73ABD00759A69 /* RootViewController.swift */; };
 		3F7B3DC521E73ABD00759A69 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7B3DC321E73ABD00759A69 /* RootViewController.xib */; };
 		3F7B3DC721E73ACE00759A69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DC621E73ACE00759A69 /* RootView.swift */; };
+		3F7B3DFB21E74D3800759A69 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE221E74D3800759A69 /* Strings.swift */; };
+		3F7B3DFC21E74D3800759A69 /* CancellableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE321E74D3800759A69 /* CancellableProperty.swift */; };
+		3F7B3DFD21E74D3800759A69 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE421E74D3800759A69 /* ObservableObject.swift */; };
+		3F7B3DFE21E74D3800759A69 /* InfiniteSecuenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE521E74D3800759A69 /* InfiniteSecuenceGenerator.swift */; };
+		3F7B3DFF21E74D3800759A69 /* ObservableObject.Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE621E74D3800759A69 /* ObservableObject.Observer.swift */; };
+		3F7B3E0021E74D3800759A69 /* F.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE721E74D3800759A69 /* F.swift */; };
+		3F7B3E0121E74D3800759A69 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE821E74D3800759A69 /* Queue.swift */; };
+		3F7B3E0221E74D3800759A69 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE921E74D3800759A69 /* Atomic.swift */; };
+		3F7B3E0321E74D3800759A69 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DEA21E74D3800759A69 /* Duration.swift */; };
+		3F7B3E0421E74D3800759A69 /* RootViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DEC21E74D3800759A69 /* RootViewRepresentable.swift */; };
+		3F7B3E0521E74D3800759A69 /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DEF21E74D3800759A69 /* CGRect+Extensions.swift */; };
+		3F7B3E0621E74D3800759A69 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF121E74D3800759A69 /* UIView+CornerRadius.swift */; };
+		3F7B3E0721E74D3800759A69 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF321E74D3800759A69 /* DispatchQueue+Extensions.swift */; };
+		3F7B3E0821E74D3800759A69 /* RangeReplaceableCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF421E74D3800759A69 /* RangeReplaceableCollection+Extension.swift */; };
+		3F7B3E0921E74D3800759A69 /* NSLocking+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF521E74D3800759A69 /* NSLocking+Extension.swift */; };
+		3F7B3E0A21E74D3800759A69 /* Strideable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF621E74D3800759A69 /* Strideable+Extension.swift */; };
+		3F7B3E0B21E74D3800759A69 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF721E74D3800759A69 /* Optional+Extensions.swift */; };
+		3F7B3E0C21E74D3800759A69 /* DispatchTime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DF821E74D3800759A69 /* DispatchTime+Extension.swift */; };
+		3F7B3E0D21E74D3800759A69 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DFA21E74D3800759A69 /* Cancellable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +68,25 @@
 		3F7B3DC221E73ABD00759A69 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3F7B3DC321E73ABD00759A69 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		3F7B3DC621E73ACE00759A69 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		3F7B3DE221E74D3800759A69 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		3F7B3DE321E74D3800759A69 /* CancellableProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellableProperty.swift; sourceTree = "<group>"; };
+		3F7B3DE421E74D3800759A69 /* ObservableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
+		3F7B3DE521E74D3800759A69 /* InfiniteSecuenceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteSecuenceGenerator.swift; sourceTree = "<group>"; };
+		3F7B3DE621E74D3800759A69 /* ObservableObject.Observer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableObject.Observer.swift; sourceTree = "<group>"; };
+		3F7B3DE721E74D3800759A69 /* F.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = F.swift; sourceTree = "<group>"; };
+		3F7B3DE821E74D3800759A69 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		3F7B3DE921E74D3800759A69 /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		3F7B3DEA21E74D3800759A69 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		3F7B3DEC21E74D3800759A69 /* RootViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewRepresentable.swift; sourceTree = "<group>"; };
+		3F7B3DEF21E74D3800759A69 /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		3F7B3DF121E74D3800759A69 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		3F7B3DF321E74D3800759A69 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
+		3F7B3DF421E74D3800759A69 /* RangeReplaceableCollection+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollection+Extension.swift"; sourceTree = "<group>"; };
+		3F7B3DF521E74D3800759A69 /* NSLocking+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLocking+Extension.swift"; sourceTree = "<group>"; };
+		3F7B3DF621E74D3800759A69 /* Strideable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strideable+Extension.swift"; sourceTree = "<group>"; };
+		3F7B3DF721E74D3800759A69 /* Optional+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
+		3F7B3DF821E74D3800759A69 /* DispatchTime+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchTime+Extension.swift"; sourceTree = "<group>"; };
+		3F7B3DFA21E74D3800759A69 /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +142,7 @@
 				3F5E36F921E732D0006D5B1D /* LaunchScreen.storyboard */,
 				3F5E36FC21E732D0006D5B1D /* Info.plist */,
 				3F7B3DBC21E738CA00759A69 /* UI */,
+				3F7B3DE021E74D3800759A69 /* Lib */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -158,6 +197,88 @@
 			children = (
 			);
 			path = CountriesViewController;
+			sourceTree = "<group>";
+		};
+		3F7B3DE021E74D3800759A69 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DEB21E74D3800759A69 /* Mixin */,
+				3F7B3DE121E74D3800759A69 /* Types */,
+				3F7B3DED21E74D3800759A69 /* Extensions */,
+				3F7B3DF921E74D3800759A69 /* Protocols */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		3F7B3DE121E74D3800759A69 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DE221E74D3800759A69 /* Strings.swift */,
+				3F7B3DE321E74D3800759A69 /* CancellableProperty.swift */,
+				3F7B3DE421E74D3800759A69 /* ObservableObject.swift */,
+				3F7B3DE521E74D3800759A69 /* InfiniteSecuenceGenerator.swift */,
+				3F7B3DE621E74D3800759A69 /* ObservableObject.Observer.swift */,
+				3F7B3DE721E74D3800759A69 /* F.swift */,
+				3F7B3DE821E74D3800759A69 /* Queue.swift */,
+				3F7B3DE921E74D3800759A69 /* Atomic.swift */,
+				3F7B3DEA21E74D3800759A69 /* Duration.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		3F7B3DEB21E74D3800759A69 /* Mixin */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DEC21E74D3800759A69 /* RootViewRepresentable.swift */,
+			);
+			path = Mixin;
+			sourceTree = "<group>";
+		};
+		3F7B3DED21E74D3800759A69 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DEE21E74D3800759A69 /* CoreGraphics */,
+				3F7B3DF021E74D3800759A69 /* UIKit */,
+				3F7B3DF221E74D3800759A69 /* Foundation */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3F7B3DEE21E74D3800759A69 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DEF21E74D3800759A69 /* CGRect+Extensions.swift */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		3F7B3DF021E74D3800759A69 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DF121E74D3800759A69 /* UIView+CornerRadius.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		3F7B3DF221E74D3800759A69 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DF321E74D3800759A69 /* DispatchQueue+Extensions.swift */,
+				3F7B3DF421E74D3800759A69 /* RangeReplaceableCollection+Extension.swift */,
+				3F7B3DF521E74D3800759A69 /* NSLocking+Extension.swift */,
+				3F7B3DF621E74D3800759A69 /* Strideable+Extension.swift */,
+				3F7B3DF721E74D3800759A69 /* Optional+Extensions.swift */,
+				3F7B3DF821E74D3800759A69 /* DispatchTime+Extension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		3F7B3DF921E74D3800759A69 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DFA21E74D3800759A69 /* Cancellable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,9 +412,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7B3E0921E74D3800759A69 /* NSLocking+Extension.swift in Sources */,
+				3F7B3E0B21E74D3800759A69 /* Optional+Extensions.swift in Sources */,
 				3F7B3DC421E73ABD00759A69 /* RootViewController.swift in Sources */,
 				3F5E36F121E732CF006D5B1D /* AppDelegate.swift in Sources */,
+				3F7B3DFB21E74D3800759A69 /* Strings.swift in Sources */,
+				3F7B3E0321E74D3800759A69 /* Duration.swift in Sources */,
+				3F7B3E0021E74D3800759A69 /* F.swift in Sources */,
+				3F7B3E0421E74D3800759A69 /* RootViewRepresentable.swift in Sources */,
 				3F7B3DC721E73ACE00759A69 /* RootView.swift in Sources */,
+				3F7B3E0121E74D3800759A69 /* Queue.swift in Sources */,
+				3F7B3DFF21E74D3800759A69 /* ObservableObject.Observer.swift in Sources */,
+				3F7B3E0721E74D3800759A69 /* DispatchQueue+Extensions.swift in Sources */,
+				3F7B3E0621E74D3800759A69 /* UIView+CornerRadius.swift in Sources */,
+				3F7B3E0821E74D3800759A69 /* RangeReplaceableCollection+Extension.swift in Sources */,
+				3F7B3E0C21E74D3800759A69 /* DispatchTime+Extension.swift in Sources */,
+				3F7B3DFE21E74D3800759A69 /* InfiniteSecuenceGenerator.swift in Sources */,
+				3F7B3DFC21E74D3800759A69 /* CancellableProperty.swift in Sources */,
+				3F7B3E0A21E74D3800759A69 /* Strideable+Extension.swift in Sources */,
+				3F7B3E0D21E74D3800759A69 /* Cancellable.swift in Sources */,
+				3F7B3E0521E74D3800759A69 /* CGRect+Extensions.swift in Sources */,
+				3F7B3DFD21E74D3800759A69 /* ObservableObject.swift in Sources */,
+				3F7B3E0221E74D3800759A69 /* Atomic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
