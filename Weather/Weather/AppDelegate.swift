@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         -> Bool
     {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = RootViewController()
+        window.rootViewController = UINavigationController(rootViewController: CountriesViewController())
         window.makeKeyAndVisible()
         
         self.window = window
