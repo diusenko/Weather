@@ -18,7 +18,7 @@ extension RootViewRepresentable where Self: UIViewController {
     var rootView: RootView? {
         
         return when(condition: self.isViewLoaded) {
-            cast(value: self.view)
+            cast(self.view)
         }
     }
 }

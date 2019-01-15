@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
-class Model {
     
+struct Country: Decodable {
+    let name: String
+    let capital: String
 }

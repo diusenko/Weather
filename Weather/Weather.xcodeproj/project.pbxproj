@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F582CF021EDE6AA00898E3E /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F582CEE21EDE6AA00898E3E /* CountryTableViewCell.swift */; };
+		3F582CF121EDE6AA00898E3E /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F582CEF21EDE6AA00898E3E /* CountryTableViewCell.xib */; };
+		3F582CF321EDF8ED00898E3E /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */; };
 		3F5E36F121E732CF006D5B1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E36F021E732CF006D5B1D /* AppDelegate.swift */; };
 		3F5E36F821E732D0006D5B1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E36F721E732D0006D5B1D /* Assets.xcassets */; };
 		3F5E36FB21E732D0006D5B1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E36F921E732D0006D5B1D /* LaunchScreen.storyboard */; };
@@ -15,7 +18,7 @@
 		3F61FBD621E765DC00649F6D /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61FBD421E765DC00649F6D /* CountriesViewController.swift */; };
 		3F61FBD721E765DC00649F6D /* CountriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61FBD521E765DC00649F6D /* CountriesViewController.xib */; };
 		3F61FBD921E765F700649F6D /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61FBD821E765F700649F6D /* CountriesView.swift */; };
-		3F61FBDC21E7808C00649F6D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61FBDB21E7808C00649F6D /* Model.swift */; };
+		3F61FBDC21E7808C00649F6D /* CountriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61FBDB21E7808C00649F6D /* CountriesModel.swift */; };
 		3F7B3DC421E73ABD00759A69 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DC221E73ABD00759A69 /* RootViewController.swift */; };
 		3F7B3DC521E73ABD00759A69 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7B3DC321E73ABD00759A69 /* RootViewController.xib */; };
 		3F7B3DC721E73ACE00759A69 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DC621E73ACE00759A69 /* RootView.swift */; };
@@ -43,6 +46,9 @@
 		3F99E63D21EC8E6800E2C08E /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E63B21EC8E6800E2C08E /* WeatherViewController.swift */; };
 		3F99E63E21EC8E6800E2C08E /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F99E63C21EC8E6800E2C08E /* WeatherViewController.xib */; };
 		3F99E64021EC8E7A00E2C08E /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E63F21EC8E7A00E2C08E /* WeatherView.swift */; };
+		3F99E64221EC9F8800E2C08E /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E64121EC9F8800E2C08E /* UIColor+Extensions.swift */; };
+		3F99E64521EC9FF700E2C08E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E64421EC9FF700E2C08E /* Color.swift */; };
+		3F99E64A21ECCF1500E2C08E /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E64921ECCF1500E2C08E /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F582CEE21EDE6AA00898E3E /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
+		3F582CEF21EDE6AA00898E3E /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
+		3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		3F5E36ED21E732CE006D5B1D /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5E36F021E732CF006D5B1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F5E36F721E732D0006D5B1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,7 +86,7 @@
 		3F61FBD421E765DC00649F6D /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		3F61FBD521E765DC00649F6D /* CountriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesViewController.xib; sourceTree = "<group>"; };
 		3F61FBD821E765F700649F6D /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
-		3F61FBDB21E7808C00649F6D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3F61FBDB21E7808C00649F6D /* CountriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesModel.swift; sourceTree = "<group>"; };
 		3F7B3DC221E73ABD00759A69 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3F7B3DC321E73ABD00759A69 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		3F7B3DC621E73ACE00759A69 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -105,6 +114,9 @@
 		3F99E63B21EC8E6800E2C08E /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		3F99E63C21EC8E6800E2C08E /* WeatherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		3F99E63F21EC8E7A00E2C08E /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		3F99E64121EC9F8800E2C08E /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		3F99E64421EC9FF700E2C08E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		3F99E64921ECCF1500E2C08E /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F582CED21EDE65500898E3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F582CEE21EDE6AA00898E3E /* CountryTableViewCell.swift */,
+				3F582CEF21EDE6AA00898E3E /* CountryTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3F5E36E421E732CE006D5B1D = {
 			isa = PBXGroup;
 			children = (
@@ -183,19 +204,21 @@
 			path = WeatherUITests;
 			sourceTree = "<group>";
 		};
-		3F61FBDA21E7806E00649F6D /* Model */ = {
+		3F61FBDA21E7806E00649F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3F61FBDB21E7808C00649F6D /* Model.swift */,
+				3F61FBDB21E7808C00649F6D /* CountriesModel.swift */,
+				3F99E64921ECCF1500E2C08E /* WeatherModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3F7B3DBC21E738CA00759A69 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3F99E64321EC9FE200E2C08E /* Resourses */,
 				3F99E63721EC819F00E2C08E /* NetworkManager.swift */,
-				3F61FBDA21E7806E00649F6D /* Model */,
+				3F61FBDA21E7806E00649F6D /* Models */,
 				3F7B3DBF21E73A3000759A69 /* RootViewController */,
 				3F7B3DC021E73A4100759A69 /* CountriesViewController */,
 				3F7B3DBD21E7390700759A69 /* WeatherViewController */,
@@ -226,6 +249,7 @@
 		3F7B3DC021E73A4100759A69 /* CountriesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F582CED21EDE65500898E3E /* Views */,
 				3F61FBD421E765DC00649F6D /* CountriesViewController.swift */,
 				3F61FBD521E765DC00649F6D /* CountriesViewController.xib */,
 				3F61FBD821E765F700649F6D /* CountriesView.swift */,
@@ -264,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				3F7B3DEC21E74D3800759A69 /* RootViewRepresentable.swift */,
+				3F99E63921EC850400E2C08E /* ColorRepresentable.swift */,
 			);
 			path = Mixin;
 			sourceTree = "<group>";
@@ -290,6 +315,8 @@
 			isa = PBXGroup;
 			children = (
 				3F7B3DF121E74D3800759A69 /* UIView+CornerRadius.swift */,
+				3F99E64121EC9F8800E2C08E /* UIColor+Extensions.swift */,
+				3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -311,9 +338,16 @@
 			isa = PBXGroup;
 			children = (
 				3F7B3DFA21E74D3800759A69 /* Cancellable.swift */,
-				3F99E63921EC850400E2C08E /* ColorRepresentable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3F99E64321EC9FE200E2C08E /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				3F99E64421EC9FF700E2C08E /* Color.swift */,
+			);
+			path = Resourses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +454,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F582CF121EDE6AA00898E3E /* CountryTableViewCell.xib in Resources */,
 				3F99E63E21EC8E6800E2C08E /* WeatherViewController.xib in Resources */,
 				3F5E36FB21E732D0006D5B1D /* LaunchScreen.storyboard in Resources */,
 				3F5E36F821E732D0006D5B1D /* Assets.xcassets in Resources */,
@@ -450,7 +485,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F7B3E0921E74D3800759A69 /* NSLocking+Extension.swift in Sources */,
+				3F99E64221EC9F8800E2C08E /* UIColor+Extensions.swift in Sources */,
 				3F7B3E0B21E74D3800759A69 /* Optional+Extensions.swift in Sources */,
+				3F582CF021EDE6AA00898E3E /* CountryTableViewCell.swift in Sources */,
 				3F7B3DC421E73ABD00759A69 /* RootViewController.swift in Sources */,
 				3F5E36F121E732CF006D5B1D /* AppDelegate.swift in Sources */,
 				3F7B3DFB21E74D3800759A69 /* Strings.swift in Sources */,
@@ -459,14 +496,17 @@
 				3F7B3E0021E74D3800759A69 /* F.swift in Sources */,
 				3F7B3E0421E74D3800759A69 /* RootViewRepresentable.swift in Sources */,
 				3F7B3DC721E73ACE00759A69 /* RootView.swift in Sources */,
-				3F61FBDC21E7808C00649F6D /* Model.swift in Sources */,
+				3F61FBDC21E7808C00649F6D /* CountriesModel.swift in Sources */,
 				3F7B3E0121E74D3800759A69 /* Queue.swift in Sources */,
 				3F7B3DFF21E74D3800759A69 /* ObservableObject.Observer.swift in Sources */,
+				3F99E64A21ECCF1500E2C08E /* WeatherModel.swift in Sources */,
 				3F61FBD621E765DC00649F6D /* CountriesViewController.swift in Sources */,
 				3F7B3E0721E74D3800759A69 /* DispatchQueue+Extensions.swift in Sources */,
 				3F7B3E0621E74D3800759A69 /* UIView+CornerRadius.swift in Sources */,
 				3F99E63821EC819F00E2C08E /* NetworkManager.swift in Sources */,
 				3F7B3E0821E74D3800759A69 /* RangeReplaceableCollection+Extension.swift in Sources */,
+				3F582CF321EDF8ED00898E3E /* UITableViewCell+Extensions.swift in Sources */,
+				3F99E64521EC9FF700E2C08E /* Color.swift in Sources */,
 				3F99E64021EC8E7A00E2C08E /* WeatherView.swift in Sources */,
 				3F7B3E0C21E74D3800759A69 /* DispatchTime+Extension.swift in Sources */,
 				3F7B3DFE21E74D3800759A69 /* InfiniteSecuenceGenerator.swift in Sources */,

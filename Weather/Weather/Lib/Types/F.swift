@@ -15,10 +15,14 @@ enum F {
     typealias VoidExecute = () -> ()
 }
 
-func cast<Value, Result>(value: Value) -> Result? {
+func cast<Value, Result>(_ value: Value) -> Result? {
     return value as? Result
 }
 
 func when<Result>(condition: Bool, execute: () -> Result?) -> Result? {
     return condition ? execute() : nil
+}
+
+func toString(_ cls: AnyClass) -> String {
+    return String(describing: cls)
 }
