@@ -20,11 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jS-CV-SQW">
-                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="582"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyE-oM-tEI">
                             <rect key="frame" x="86" y="191" width="148" height="123"/>
-                            <color key="backgroundColor" red="1" green="0.59364149730000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="123" id="KJF-hd-VdI"/>
                             </constraints>
@@ -33,8 +32,8 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0j-Tt-rF5">
-                            <rect key="frame" x="22" y="8" width="277" height="70"/>
-                            <color key="backgroundColor" red="1" green="0.99828848110000001" blue="0.29845266879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="22" y="85" width="277" height="70"/>
+                            <color key="backgroundColor" red="1" green="0.59364149730000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="58q-t6-jfg"/>
                             </constraints>
@@ -45,20 +44,20 @@
                     </subviews>
                     <color key="backgroundColor" red="0.9174103186" green="1" blue="0.8879514436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="iyE-oM-tEI" firstAttribute="top" secondItem="N0j-Tt-rF5" secondAttribute="bottom" priority="750" constant="113" id="24P-DD-Pfh"/>
+                        <constraint firstItem="iyE-oM-tEI" firstAttribute="top" secondItem="N0j-Tt-rF5" secondAttribute="bottom" priority="750" constant="36" id="24P-DD-Pfh"/>
                         <constraint firstAttribute="trailing" secondItem="iyE-oM-tEI" secondAttribute="trailing" constant="86" id="FoY-xO-DLN"/>
                         <constraint firstItem="N0j-Tt-rF5" firstAttribute="leading" secondItem="8jS-CV-SQW" secondAttribute="leading" constant="22" id="VaL-fu-dXf"/>
-                        <constraint firstItem="N0j-Tt-rF5" firstAttribute="top" secondItem="8jS-CV-SQW" secondAttribute="top" constant="8" id="Z53-wV-qY1"/>
+                        <constraint firstItem="N0j-Tt-rF5" firstAttribute="top" secondItem="8jS-CV-SQW" secondAttribute="top" constant="85" id="Z53-wV-qY1"/>
                         <constraint firstItem="iyE-oM-tEI" firstAttribute="leading" secondItem="8jS-CV-SQW" secondAttribute="leading" constant="86" id="byq-1u-xk0"/>
                         <constraint firstAttribute="trailing" secondItem="N0j-Tt-rF5" secondAttribute="trailing" constant="21" id="hEu-GU-E86"/>
-                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="iyE-oM-tEI" secondAttribute="bottom" constant="347" id="iKs-iC-x09"/>
+                        <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="iyE-oM-tEI" secondAttribute="bottom" constant="381" id="iKs-iC-x09"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="8jS-CV-SQW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Ctk-S2-cpA"/>
-                <constraint firstItem="8jS-CV-SQW" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Eqh-gX-3jX"/>
+                <constraint firstItem="8jS-CV-SQW" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="34" id="Eqh-gX-3jX"/>
                 <constraint firstItem="8jS-CV-SQW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="M39-qp-XA4"/>
                 <constraint firstAttribute="trailing" secondItem="8jS-CV-SQW" secondAttribute="trailing" id="dvm-he-M6Q"/>
             </constraints>

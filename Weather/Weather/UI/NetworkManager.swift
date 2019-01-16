@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkManager<ModelType>: ObservableObject<NetworkManager.State> where ModelType: Decodable {
+class NetworkManager<Model>: ObservableObject<NetworkManager.State> where Model: Decodable {
     
     public enum State {
         case notLoaded
@@ -17,7 +17,7 @@ class NetworkManager<ModelType>: ObservableObject<NetworkManager.State> where Mo
         case didFailedWithError(_ error: Error?)
     }
     
-    var model: ModelType?
+    var model: Model?
     
     private(set) var state: State = .notLoaded {
         didSet {
@@ -28,15 +28,15 @@ class NetworkManager<ModelType>: ObservableObject<NetworkManager.State> where Mo
     func loadData(url: URL) {
         self.state = .didStartLoading
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.resumeSession(with: url) { (data, response, error) in
             if let data = data {
-                do { let values = try JSONDecoder().decode(ModelType.self, from: data)
+                do { let values = try JSONDecoder().decode(Model.self, from: data)
                     self.model = values
                     self.state = .didLoad
                 } catch {
                     self.state = .didFailedWithError(error)
                 }
             }
-        }.resume()
+        }
     }
 }

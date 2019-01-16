@@ -12,52 +12,52 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
 
     typealias RootView = WeatherView
     
-    var capital: String
-    var temperature: Double?
+    private var capital: String
     
     let networkManager = NetworkManager<Weather>()
     
     init(capital: String) {
         self.capital = capital
+        
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Strings.initError)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(self.capital)
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=" +
-            self.capital + "&units=metric&APPID=93ed6d9a1885eeb796fe06b73dea3866"
+
+        let rootView = self.rootView
         
-        let test = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        self.navigationItem.title = Strings.weather
         
-        let url = URL(string: test!)
+        let weatherLink = Strings.weatherLink(self.capital)
+        let weatherLinkForUrl = weatherLink.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        if let url = url {
-            self.networkManager.loadData(url: url)
-            self.networkManager.observer {
-                switch($0) {
-                case .notLoaded:
-                    return
-                case .didStartLoading:
-                    return
-                case .didLoad:
-                    // If Let
-                    DispatchQueue.main.async {
-                        self.rootView?.capital?.text = self.capital
-                        let temperature = self.networkManager.model?.main["temp"]
-                        temperature.do {
-                            self.rootView?.temperature?.text = String(Int($0)) + " °C"
+        weatherLinkForUrl.do { weatherLink in
+            URL(string: weatherLink).do { url in
+                self.networkManager.loadData(url: url)
+                _ = self.networkManager.observer {
+                    switch($0) {
+                    case .notLoaded:
+                        return
+                    case .didStartLoading:
+                        return
+                    case .didLoad:
+                        DispatchQueue.main.async {
+                            rootView?.capital?.text = self.capital
+                            let temperature = self.networkManager.model?.main["temp"]
+                            temperature.do {
+                                rootView?.temperature?.text = Int($0).description + Strings.celsius
+                            }
                         }
+                    case .didFailedWithError(let error):
+                        print(error?.localizedDescription ?? "")
                     }
-                case .didFailedWithError(let error):
-                    print(error)
                 }
             }
         }
     }
-
 }

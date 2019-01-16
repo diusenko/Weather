@@ -8,25 +8,30 @@
 
 import UIKit
 
-class CountriesViewController: UIViewController, RootViewRepresentable, UITableViewDataSource, UITableViewDelegate {
+class CountriesViewController: UIViewController, RootViewRepresentable, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     
     typealias RootView = CountriesView
     
     var model = [Country]()
     
     let networkManager = NetworkManager<[Country]>()
-    let url = URL(string: "https://restcountries.eu/rest/v2/all")
+    let url = URL(string: Strings.countriesLink)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    self.rootView?.countriesTableView.register(CountryTableViewCell.self)
+        let rootView = self.rootView
         
-        self.rootView?.countriesTableView.delegate = self
-        self.rootView?.countriesTableView.dataSource = self
+        rootView?.countriesTableView.register(CountryTableViewCell.self)
+        rootView?.countriesTableView.delegate = self
+        rootView?.countriesTableView.dataSource = self
+        self.navigationController?.delegate = self
+        
+        self.navigationItem.title = Strings.capital
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         if let url = self.url {
            self.networkManager.loadData(url: url)
-            self.networkManager.observer {
+           _ = self.networkManager.observer {
                 switch($0) {
                 case .notLoaded:
                     return
@@ -35,13 +40,22 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
                 case .didLoad:
                     self.model = self.networkManager.model!.filter { !$0.capital.isEmpty }
                     DispatchQueue.main.async {
-                        self.rootView?.countriesTableView?.reloadData()
+                        rootView?.countriesTableView?.reloadData()
                     }
                 case .didFailedWithError(let error):
-                    print(error)
+                    print(error?.localizedDescription ?? "")
                 }
             }
         }
+    }
+}
+
+extension CountriesViewController {
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        let controller = viewController as? CountriesViewController
+        
+        print(controller?.rootView?.countriesTableView.indexPathForSelectedRow)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -58,7 +72,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
         let cell = cast(self.rootView?
             .countriesTableView?
             .dequeueReusableCell(withCellClass: CountryTableViewCell.self)
-        ) ?? CountryTableViewCell()
+            ) ?? CountryTableViewCell()
         
         let item = self.model[indexPath.row]
         cell.fill(country: item)
