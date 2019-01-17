@@ -41,8 +41,6 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
                 self.networkManager.loadData(url: url)
                 _ = self.networkManager.observer {
                     switch($0) {
-                    case .notLoaded:
-                        return
                     case .didStartLoading:
                         return
                     case .didLoad:

@@ -33,8 +33,6 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
            self.networkManager.loadData(url: url)
            _ = self.networkManager.observer {
                 switch($0) {
-                case .notLoaded:
-                    return
                 case .didStartLoading:
                     return
                 case .didLoad:
