@@ -9,28 +9,39 @@
 import Foundation
 
 //class Manager<Model> where Model: Decodable {
-//    
+//
 //    private var observableObjects = [ObservableObject<NetworkManager<Model>>]()
-//    
+//
 //    private let networkManager = NetworkManager<Model>()
-//    
-//    func getData(url: URL, executeWhenDidLoad: F.VoidExecute) {
+//
+//    private var model: Model?
+//
+//    func getData(url: URL, completion: @escaping (Model?) -> ()) {
 //        self.networkManager.loadData(url: url)
-//        let networkManager = self.networkManager.observer {
+//        self.networkManager.observer {
 //            switch($0) {
-//            case .notLoaded:
-//                return
-//            case .didStartLoading:
-//                return
+//            case .didStartLoading: return
 //            case .didLoad:
-//                self.model = self.networkManager.model!.filter { !$0.capital.isEmpty }
-//                DispatchQueue.main.async {
-//                    rootView?.countriesTableView?.reloadData()
-//                }
+//                 completion(self.networkManager.model)
 //            case .didFailedWithError(let error):
 //                print(error?.localizedDescription ?? "")
 //            }
 //        }
-//        self.observableObjects.append(networkManager)
 //    }
 //}
+
+class CountryWithWeather {
+    
+    var country: Country
+    var weather: Weather?
+    var date: Date?
+    
+    init(country: Country) {
+        self.country = country
+        self.weather = nil
+    }
+}
+
+class Countries {
+    var values: [CountryWithWeather] = []
+}

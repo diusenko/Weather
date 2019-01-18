@@ -16,9 +16,9 @@ class NetworkManager<Model>: ObservableObject<NetworkManager.State> where Model:
         case didFailedWithError(_ error: Error?)
     }
     
-    var model: Model?
+    public var model: Model?
     
-    func loadData(url: URL) {
+    public func loadData(url: URL) {
         let notify = self.notify
         notify(.didStartLoading)
         

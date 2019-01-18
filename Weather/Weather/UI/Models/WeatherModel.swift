@@ -9,5 +9,19 @@
 import Foundation
 
 struct Weather: Decodable {
-    let main: [String : Double]
+    var main: Main
+    
+    struct Main: Codable {
+        var temperature: Double
+        let pressure: Int
+        let humidity: Int
+        let tempMin, tempMax: Double
+        
+        enum CodingKeys: String, CodingKey {
+            case pressure, humidity
+            case temperature = "temp"
+            case tempMin = "temp_min"
+            case tempMax = "temp_max"
+        }
+    }
 }

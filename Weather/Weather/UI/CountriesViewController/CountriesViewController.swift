@@ -14,8 +14,20 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
     
     var model = [Country]()
     
+    var countries = Countries()
+    
     let networkManager = NetworkManager<[Country]>()
     let url = URL(string: Strings.countriesLink)
+    
+    init() {
+        super.init(nibName: nil, bundle:nil)
+        self.getData()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.getData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +40,21 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
         
         self.navigationItem.title = Strings.capital
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        
+    }
+    
+    func getData() {
         if let url = self.url {
-           self.networkManager.loadData(url: url)
-           _ = self.networkManager.observer {
+            self.networkManager.loadData(url: url)
+            _ = self.networkManager.observer {
                 switch($0) {
                 case .didStartLoading:
                     return
                 case .didLoad:
+                    //force !!!!!!
                     self.model = self.networkManager.model!.filter { !$0.capital.isEmpty }
-                    DispatchQueue.main.async {
-                        rootView?.countriesTableView?.reloadData()
+                    
+                    self.model.forEach {
+                        self.countries.values.append(CountryWithWeather(country: $0))
                     }
                 case .didFailedWithError(let error):
                     print(error?.localizedDescription ?? "")
@@ -52,13 +68,15 @@ extension CountriesViewController {
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         let controller = viewController as? CountriesViewController
-        
-        print(controller?.rootView?.countriesTableView.indexPathForSelectedRow)
+        let indexPath = controller?.rootView?.countriesTableView.indexPathForSelectedRow
+        indexPath.do {
+            controller?.rootView?.countriesTableView.reloadRows(at: [$0], with: .automatic)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let capital = self.model[indexPath.row].capital
-        let weatherViewController = WeatherViewController(capital: capital)
+        let weatherViewController = WeatherViewController(capital: capital, countries: self.countries)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
@@ -72,8 +90,8 @@ extension CountriesViewController {
             .dequeueReusableCell(withCellClass: CountryTableViewCell.self)
             ) ?? CountryTableViewCell()
         
-        let item = self.model[indexPath.row]
-        cell.fill(country: item)
+        let item = self.countries.values[indexPath.row]
+        cell.fill(with : item)
         
         return cell
     }

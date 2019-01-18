@@ -13,12 +13,14 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     typealias RootView = WeatherView
     
     private var capital: String
+    private var countries: Countries
+    
     
     let networkManager = NetworkManager<Weather>()
     
-    init(capital: String) {
+    init(capital: String, countries: Countries) {
         self.capital = capital
-        
+        self.countries = countries
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,11 +30,12 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let rootView = self.rootView
-        
         self.navigationItem.title = Strings.weather
-        
+        self.getData()
+    }
+    
+    func getData() {
+        let rootView = self.rootView
         let weatherLink = Strings.weatherLink(self.capital)
         let weatherLinkForUrl = weatherLink.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
@@ -44,11 +47,12 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
                     case .didStartLoading:
                         return
                     case .didLoad:
-                        DispatchQueue.main.async {
-                            rootView?.capital?.text = self.capital
-                            let temperature = self.networkManager.model?.main["temp"]
-                            temperature.do {
-                                rootView?.temperature?.text = Int($0).description + Strings.celsius
+                        let country = self.countries.values.first(where: { $0.country.capital == self.capital} )
+                        country.do { country in
+                            country.date = Date()
+                            country.weather =  self.networkManager.model
+                            DispatchQueue.main.async {
+                                rootView?.fill(with: country)
                             }
                         }
                     case .didFailedWithError(let error):
