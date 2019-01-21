@@ -8,9 +8,9 @@
 
 import Foundation
 
-class NetworkManager<Model>: ObservableObject<NetworkManager.State> where Model: Decodable {
+class NetworkManager<Model>: ObservableObject<NetworkManager.Event> where Model: Decodable {
     
-    public enum State {
+    public enum Event {
         case didStartLoading
         case didLoad
         case didFailedWithError(_ error: Error?)
@@ -24,7 +24,11 @@ class NetworkManager<Model>: ObservableObject<NetworkManager.State> where Model:
         
         URLSession.shared.resumeSession(with: url) { (data, response, error) in
             
-            guard error == nil else { return }
+            guard error == nil else {
+                self.notify(handler: .didFailedWithError(error))
+                
+                return
+            }
             
             if let data = data {
                 do { let values = try JSONDecoder().decode(Model.self, from: data)

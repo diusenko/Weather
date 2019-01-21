@@ -17,7 +17,7 @@ class WeatherView: UIView {
         super.layoutSubviews()
     }
     
-    func fill(with data: CountryWithWeather) {
+    public func fill(with data: CountryData) {
         self.temperature?.text = data.weather?.main.temperature.description
         self.capital?.text = data.country.capital.description
     }
