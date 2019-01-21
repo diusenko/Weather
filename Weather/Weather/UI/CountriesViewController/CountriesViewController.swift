@@ -12,22 +12,12 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
     
     typealias RootView = CountriesView
     
-    var model = [Country]()
+    private var model = CountriesData()
     
-    var countries = Countries()
+    private let manager  = Manager<[Country]>()
     
-    let networkManager = NetworkManager<[Country]>()
-    let url = URL(string: Strings.countriesLink)
-    
-    init() {
-        super.init(nibName: nil, bundle:nil)
-        self.getData()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.getData()
-    }
+    private  let networkManager = NetworkManager<[Country]>()
+    private  let url = URL(string: Constant.countriesLink)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,26 +28,23 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
         rootView?.countriesTableView.dataSource = self
         self.navigationController?.delegate = self
         
-        self.navigationItem.title = Strings.capital
+        self.navigationItem.title = Constant.capital
         self.navigationController?.navigationBar.prefersLargeTitles = true
+    
+        self.fillModel()
     }
     
-    func getData() {
+    private func fillModel() {
         if let url = self.url {
-            self.networkManager.loadData(url: url)
-            _ = self.networkManager.observer {
-                switch($0) {
-                case .didStartLoading:
-                    return
-                case .didLoad:
-                    //force !!!!!!
-                    self.model = self.networkManager.model!.filter { !$0.capital.isEmpty }
-                    
-                    self.model.forEach {
-                        self.countries.values.append(CountryWithWeather(country: $0))
+            self.manager.getData(from: url) { model, error in
+                if let model = model {
+                    self.model.values = model.filter { !$0.capital.isEmpty }
+                        .map(CountryData.init)
+                    DispatchQueue.main.async {
+                        self.rootView?.countriesTableView.reloadData()
                     }
-                case .didFailedWithError(let error):
-                    print(error?.localizedDescription ?? "")
+                } else {
+                    print(error.debugDescription)
                 }
             }
         }
@@ -66,31 +53,34 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
 
 extension CountriesViewController {
     
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        let controller = viewController as? CountriesViewController
+    func navigationController(_ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        let controller: CountriesViewController? = cast(viewController)
         let indexPath = controller?.rootView?.countriesTableView.indexPathForSelectedRow
         indexPath.do {
-            controller?.rootView?.countriesTableView.reloadRows(at: [$0], with: .automatic)
+            controller?.rootView?.countriesTableView.reloadRow(at: $0, with: .bottom)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let capital = self.model[indexPath.row].capital
-        let weatherViewController = WeatherViewController(capital: capital, countries: self.countries)
+        let capital = self.model.values[indexPath.row]
+        let weatherViewController = WeatherViewController(data: capital)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model.count
+        return self.model.values.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = cast(self.rootView?
             .countriesTableView?
             .dequeueReusableCell(withCellClass: CountryTableViewCell.self)
-            ) ?? CountryTableViewCell()
+        ) ?? CountryTableViewCell()
         
-        let item = self.countries.values[indexPath.row]
+        let item = self.model.values[indexPath.row]
         cell.fill(with : item)
         
         return cell
