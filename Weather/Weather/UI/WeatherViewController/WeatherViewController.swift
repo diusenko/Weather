@@ -9,57 +9,47 @@
 import UIKit
 
 class WeatherViewController: UIViewController, RootViewRepresentable {
-
+    
     typealias RootView = WeatherView
     
-    private var capital: String
-    private var countries: Countries
+    private var model: CountryData
+
+    private let weatherManager = Manager<Weather>()
     
-    
-    let networkManager = NetworkManager<Weather>()
-    
-    init(capital: String, countries: Countries) {
-        self.capital = capital
-        self.countries = countries
+    init(data: CountryData) {
+        self.model = data
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError(Strings.initError)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = Strings.weather
-        self.getData()
+        self.navigationItem.title = Constant.weather
+        self.fillModel()
     }
     
-    func getData() {
-        let rootView = self.rootView
-        let weatherLink = Strings.weatherLink(self.capital)
-        let weatherLinkForUrl = weatherLink.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    private func fillModel() {
+        let weatherLink = Constant.weatherLink(self.model.country.capital)
         
-        weatherLinkForUrl.do { weatherLink in
-            URL(string: weatherLink).do { url in
-                self.networkManager.loadData(url: url)
-                _ = self.networkManager.observer {
-                    switch($0) {
-                    case .didStartLoading:
-                        return
-                    case .didLoad:
-                        let country = self.countries.values.first(where: { $0.country.capital == self.capital} )
-                        country.do { country in
-                            country.date = Date()
-                            country.weather =  self.networkManager.model
-                            DispatchQueue.main.async {
-                                rootView?.fill(with: country)
-                            }
+        weatherLink
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            .flatMap(URL.init)
+            .do { url in
+                self.weatherManager.getData(from: url) { model, error in
+                    if let modelFromManager = model {
+                        let model = self.model
+                        model.date = Date()
+                        model.weather = modelFromManager
+                        DispatchQueue.main.async {
+                            self.rootView?.fill(with: model)
                         }
-                    case .didFailedWithError(let error):
-                        print(error?.localizedDescription ?? "")
+                    } else {
+                        print(error.debugDescription)
                     }
                 }
             }
-        }
     }
 }
