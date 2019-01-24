@@ -19,7 +19,7 @@ func cast<Value, Result>(_ value: Value) -> Result? {
     return value as? Result
 }
 
-func when<Result>(condition: Bool, execute: () -> Result?) -> Result? {
+func when<Result>(_ condition: Bool, execute: () -> Result?) -> Result? {
     return condition ? execute() : nil
 }
 
