@@ -31,7 +31,8 @@ class NetworkManager<Model>: ObservableObject<NetworkManager.Event> where Model:
             }
             
             if let data = data {
-                do { let values = try JSONDecoder().decode(Model.self, from: data)
+                do {
+                    let values = try JSONDecoder().decode(Model.self, from: data)
                     self.model = values
                     notify(.didLoad)
                 } catch {

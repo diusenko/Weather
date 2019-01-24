@@ -12,7 +12,7 @@ public struct Constant {
     
     static let weather = "Weather"
     static let capital = "Capital"
-    static let celsius = " °C"
+    static let celsius = UnitTemperature.celsius.symbol
     static let countriesLink = "https://restcountries.eu/rest/v2/all"
     
     static let weatherLink: (String) -> String = { capital in

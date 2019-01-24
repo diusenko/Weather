@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CountriesViewController: UIViewController, RootViewRepresentable, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
+class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
@@ -21,15 +21,12 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rootView = self.rootView
-        
-        rootView?.countriesTableView.register(CountryTableViewCell.self)
-        rootView?.countriesTableView.delegate = self
-        rootView?.countriesTableView.dataSource = self
-        self.navigationController?.delegate = self
-        
-        self.navigationItem.title = Constant.capital
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.rootView?.countriesTableView.register(CountryTableViewCell.self)
+   
+        let navigationController = self.navigationController
+        navigationController?.delegate = self
+        navigationController?.title = Constant.capital
+        navigationController?.navigationBar.prefersLargeTitles = true
     
         self.fillModel()
     }
@@ -51,7 +48,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable, UITableV
     }
 }
 
-extension CountriesViewController {
+extension CountriesViewController: UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController,
         didShow viewController: UIViewController,
