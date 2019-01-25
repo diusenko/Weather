@@ -42,3 +42,27 @@ class NetworkManager<Model>: ObservableObject<NetworkManager.Event> where Model:
         }
     }
 }
+
+class NetworkManager2<Model> where Model: Decodable {
+    
+    public func loadData(url: URL, completion: @escaping (Model?, Error?) -> ()) {
+        
+        URLSession.shared.resumeSession(with: url) { (data, response, error) in
+            
+            guard error == nil else {
+                completion(nil, error)
+                
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let values = try JSONDecoder().decode(Model.self, from: data)
+                    completion(values, nil)
+                } catch {
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+}
