@@ -1,5 +1,5 @@
 //
-//  WeatherModel.swift
+//  WeatherJSON.swift
 //  Weather
 //
 //  Created by Usenko Dmitry on 1/14/19.

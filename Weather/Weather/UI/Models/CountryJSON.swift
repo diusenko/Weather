@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  CountryJSON.swift
 //  Weather
 //
 //  Created by Usenko Dmitry on 1/10/19.
