@@ -14,7 +14,7 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     private var model: CountryData
 
-    private let weatherManager = Manager<Weather>()
+    private let weatherManager = Manager<WeatherJSON>()
     
     init(data: CountryData) {
         self.model = data

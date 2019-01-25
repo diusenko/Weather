@@ -8,18 +8,39 @@
 
 import Foundation
 
-class CountryData {
+public class CountryData {
     
-    public var country: Country
-    public var weather: Weather?
+    public var country: CountryJSON
+    public var weather: WeatherJSON?
     public var date: Date?
     
-    init(country: Country) {
+    public init(country: CountryJSON) {
         self.country = country
         self.weather = nil
     }
 }
 
-class CountriesData {
+public class CountriesData {
     public var values: [CountryData] = []
+}
+
+public class Weather {
+    public var temperature: Int
+    public var minTemperature: Int
+    public var maxTemperature: Int
+    
+    public init(weather: WeatherJSON) {
+        let weather = weather.main
+        self.temperature = Int(weather.temperature)
+        self.minTemperature = Int(weather.tempMax)
+        self.maxTemperature = Int(weather.tempMin)
+    }
+}
+
+class Countries {
+    public var values: [CountryJSON]
+    
+    public init(countries: [CountryJSON]) {
+        self.values = countries
+    }
 }

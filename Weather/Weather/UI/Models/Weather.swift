@@ -8,11 +8,12 @@
 
 import Foundation
 
-struct Weather: Decodable {
+public struct WeatherJSON: Decodable {
     
-    var main: Main
+    public var main: Main
     
-    struct Main: Codable {
+    public struct Main: Decodable {
+        
         var temperature: Double
         var tempMin: Double
         var tempMax: Double

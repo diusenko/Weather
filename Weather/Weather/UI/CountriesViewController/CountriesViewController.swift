@@ -14,15 +14,17 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     private var model = CountriesData()
     
-    private let manager  = Manager<[Country]>()
+    private let manager  = Manager<[CountryJSON]>()
     
-    private  let networkManager = NetworkManager<[Country]>()
+    private  let networkManager = NetworkManager<[CountryJSON]>()
     private  let url = URL(string: Constant.countriesLink)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rootView?.countriesTableView.register(CountryTableViewCell.self)
    
+        self.title = Constant.capital
+        
         let navigationController = self.navigationController
         navigationController?.delegate = self
         navigationController?.title = Constant.capital
