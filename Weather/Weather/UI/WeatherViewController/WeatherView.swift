@@ -19,7 +19,7 @@ class WeatherView: UIView {
     
     public func fill(with data: CountryData) {
         data.weather.do {
-            self.temperature?.text = $0.main.temperature.description + UnitTemperature.celsius.symbol
+            self.temperature?.text = $0.temperature.description + UnitTemperature.celsius.symbol
         }
         self.capital?.text = data.country.capital.description
     }

@@ -10,11 +10,11 @@ import Foundation
 
 public class CountryData {
     
-    public var country: CountryJSON
-    public var weather: WeatherJSON?
+    public var country: Country
+    public var weather: Weather?
     public var date: Date?
     
-    public init(country: CountryJSON) {
+    public init(country: Country) {
         self.country = country
         self.weather = nil
     }
@@ -39,7 +39,7 @@ public class Weather {
     }
 }
 
-class Country {
+public class Country {
     
     public var name: String
     public var capital: String

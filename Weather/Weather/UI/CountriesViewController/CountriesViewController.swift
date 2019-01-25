@@ -38,7 +38,9 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
             self.manager.getData(from: url) { model, error in
                 if let model = model {
                     self.model.values = model.filter { !$0.capital.isEmpty }
-                        .map(CountryData.init)
+                        .map {
+                            CountryData(country: Country(countryJSON: $0))
+                        }
                     DispatchQueue.main.async {
                         self.rootView?.countriesTableView.reloadData()
                     }

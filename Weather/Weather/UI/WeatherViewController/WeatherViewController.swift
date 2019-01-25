@@ -42,7 +42,7 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
                     if let modelFromManager = model {
                         let model = self.model
                         model.date = Date()
-                        model.weather = modelFromManager
+                        model.weather = Weather(weatherJSON: modelFromManager)
                         DispatchQueue.main.async {
                             self.rootView?.fill(with: model)
                         }
