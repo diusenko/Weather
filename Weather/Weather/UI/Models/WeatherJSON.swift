@@ -15,13 +15,13 @@ public struct WeatherJSON: Decodable {
     public struct Main: Decodable {
         
         var temperature: Double
-        var tempMin: Double
-        var tempMax: Double
+        var temperatureMin: Double
+        var temperatureMax: Double
         
         enum CodingKeys: String, CodingKey {
             case temperature = "temp"
-            case tempMin = "temp_min"
-            case tempMax = "temp_max"
+            case temperatureMin = "temp_min"
+            case temperatureMax = "temp_max"
         }
     }
 }
