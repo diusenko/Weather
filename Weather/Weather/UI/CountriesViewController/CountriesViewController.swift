@@ -12,12 +12,12 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
-    private var model = CountriesData()
+    private var model = [CountryData]()
     
     private let manager  = Manager<[CountryJSON]>()
     
     private  let networkManager = NetworkManager<[CountryJSON]>()
-    private  let url = URL(string: Constant.countriesLink)
+    private  let url = URL(string: "https://restcountries.eu/rest/v2/all")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         if let url = self.url {
             self.manager.getData(from: url) { model, error in
                 if let model = model {
-                    self.model.values = model.filter { !$0.capital.isEmpty }
+                    self.model = model.filter { !$0.capital.isEmpty }
                         .map {
                             CountryData(country: Country(countryJSON: $0))
                         }
@@ -66,13 +66,13 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let capital = self.model.values[indexPath.row]
+        let capital = self.model[indexPath.row]
         let weatherViewController = WeatherViewController(data: capital)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model.values.count
+        return self.model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,7 +81,7 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource, U
             .dequeueReusableCell(withCellClass: CountryTableViewCell.self)
         ) ?? CountryTableViewCell()
         
-        let item = self.model.values[indexPath.row]
+        let item = self.model[indexPath.row]
         cell.fill(with : item)
         
         return cell

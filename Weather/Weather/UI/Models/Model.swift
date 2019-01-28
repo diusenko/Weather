@@ -20,11 +20,6 @@ public class CountryData {
     }
 }
 
-public class CountriesData {
-    
-    public var values: [CountryData] = []
-}
-
 public class Weather {
 
     public var temperature: Int

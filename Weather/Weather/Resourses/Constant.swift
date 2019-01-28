@@ -13,7 +13,6 @@ public struct Constant {
     static let weather = "Weather"
     static let capital = "Capital"
     static let celsius = UnitTemperature.celsius.symbol
-    static let countriesLink = "https://restcountries.eu/rest/v2/all"
     
     static let weatherLink: (String) -> String = { capital in
         let query = "https://api.openweathermap.org/data/2.5/weather?q="

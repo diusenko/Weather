@@ -10,23 +10,11 @@ import Foundation
 
 class Manager<Model> where Model: Decodable {
     
-    private var objects = [NetworkManager<Model>.Observer]()
-    
-    private let networkManager = NetworkManager<Model>()
+    private let networkManager = RequestService<Model>()
     
     public func getData(from url: URL, with action: @escaping (Model?, Error?) -> ()) {
-        self.networkManager.loadData(url: url)
-        
-        let observer = self.networkManager.observer {
-            switch($0) {
-            case .didStartLoading: return
-            case .didLoad:
-                action(self.networkManager.model, nil)
-            case .didFailedWithError(let error):
-                action(nil, error)
-            }
+        self.networkManager.loadData(url: url) { json, error in
+            action(json, error)
         }
-        
-        self.objects.append(observer)
     }
 }
