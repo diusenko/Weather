@@ -14,12 +14,6 @@ class TableViewCell : UITableViewCell {
     }
 }
 
-extension UINib {
-    convenience init(_ viewClass: AnyClass, bundle: Bundle? = nil) {
-        self.init(nibName: toString(viewClass), bundle: bundle)
-    }
-}
-
 extension UITableView {
     func register(_ cellClass: AnyClass) {
         self.register(UINib(cellClass), forCellReuseIdentifier: toString(cellClass))
