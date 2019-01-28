@@ -12,12 +12,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
-    private var model = [CountryData]()
-    
-    private let manager  = Manager<[CountryJSON]>()
-    
-    private  let networkManager = RequestService<[CountryJSON]>()
-    private  let url = URL(string: "https://restcountries.eu/rest/v2/all")
+    private let manager = CountryDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,26 +24,6 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         navigationController?.delegate = self
         navigationController?.title = Constant.capital
         navigationController?.navigationBar.prefersLargeTitles = true
-    
-        self.fillModel()
-    }
-    
-    private func fillModel() {
-        if let url = self.url {
-            self.manager.getData(from: url) { model, error in
-                if let model = model {
-                    self.model = model.filter { !$0.capital.isEmpty }
-                        .map {
-                            CountryData(country: Country(countryJSON: $0))
-                        }
-                    DispatchQueue.main.async {
-                        self.rootView?.countriesTableView?.reloadData()
-                    }
-                } else {
-                    print(error.debugDescription)
-                }
-            }
-        }
     }
 }
 
@@ -67,23 +42,21 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let capital = self.model[indexPath.row]
-        let weatherViewController = WeatherViewController(data: capital)
+        let countryData = self.manager.model[indexPath.row]
+        let weatherViewController = WeatherViewController(data: countryData)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model.count
+        return self.manager.model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = cast(self.rootView?
-            .countriesTableView?
-            .dequeueReusableCell(withCellClass: CountryTableViewCell.self)
-        ) ?? CountryTableViewCell()
+        let item = self.manager.model[indexPath.row]
         
-        let item = self.model[indexPath.row]
-        cell.fill(with : item)
+        let cell = tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
+            $0.fill(with: item)
+        } 
         
         return cell
     }

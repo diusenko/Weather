@@ -13,11 +13,11 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     typealias RootView = WeatherView
     
     private var model: CountryData
-
-    private let weatherManager = Manager<WeatherJSON>()
+    private var weatherManager: WeatherManager
     
     init(data: CountryData) {
         self.model = data
+        self.weatherManager = .init(country: data.country)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,28 +28,22 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = Constant.weather
-        self.fillModel()
-    }
-    
-    private func fillModel() {
-        let weatherLink = Constant.weatherLink(self.model.country.capital)
         
-        weatherLink
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            .flatMap(URL.init)
-            .do { url in
-                self.weatherManager.getData(from: url) { model, error in
-                    if let modelFromManager = model {
-                        let model = self.model
-                        model.date = Date()
-                        model.weather = Weather(weatherJSON: modelFromManager)
-                        DispatchQueue.main.async {
-                            self.rootView?.fill(with: model)
-                        }
-                    } else {
-                        print(error.debugDescription)
-                    }
+        let weatherManager = self.weatherManager
+        //FIX IT
+        _ = weatherManager.observer {
+            switch $0 {
+            case .willLoad:
+                return
+            case .didLoad:
+                self.model.weather = weatherManager.model
+                self.model.date = Date()
+                DispatchQueue.main.async {
+                    self.rootView?.fill(with: self.model)
                 }
+            case .faild(let error):
+                print(error ?? "")
             }
+        }
     }
 }

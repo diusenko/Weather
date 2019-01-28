@@ -17,26 +17,31 @@ fileprivate struct WeatherConstant {
     }
 }
 
-class WeatherManager {
+class WeatherManager: ObservableObject<Event> {
     
-    private var model: Weather?
+    public private(set) var model: Weather?
     
     private let networkManager = RequestService<WeatherJSON>() // Refactoring
     private let url: URL?
     private let capital: String
     
-    init(country: Country) {
+    public init(country: Country) {
         self.capital = country.capital
         self.url = URL(string: WeatherConstant.link(country.capital))
+        super.init()
         self.fillModel()
     }
     
     // Public???
-    public func fillModel() {
+    private func fillModel() {
         if let url = self.url {
             self.networkManager.loadData(url: url) { data, error in
-                data.do {
-                    self.model = Weather(weatherJSON: $0)
+                self.notify(handler: .willLoad)
+                if let data = data {
+                    self.model = Weather(weatherJSON: data)
+                    self.notify(handler: .didLoad)
+                } else {
+                    self.notify(handler: .faild(error: error))
                 }
             }
         }

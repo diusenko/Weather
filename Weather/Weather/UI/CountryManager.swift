@@ -8,23 +8,36 @@
 
 import Foundation
 
-class CountryManager {
+enum Event {
+    case willLoad
+    case didLoad
+    case faild(error: Error?)
+}
 
-    private var model: [Country]?
+class CountryManager: ObservableObject<Event> {
     
-    private let networkManager = RequestService<[CountryJSON]>() // Refactoring
+    private(set) var model: [Country]?
+    
+    private let requestService = RequestService<[CountryJSON]>()
     private let url = URL(string: "https://restcountries.eu/rest/v2/all")
     
-    init() {
+    public override init() {
+        super.init()
         self.fillModel()
     }
     
     // Public????
-    public func fillModel() {
+    private func fillModel() {
         if let url = self.url {
-            self.networkManager.loadData(url: url) { data, error in
-                data.do {
-                    self.model = $0.map(Country.init)
+            self.requestService.loadData(url: url) { data, error in
+                self.notify(handler: .willLoad)
+                if let data = data {
+                    self.model = data
+                        .map(Country.init)
+                        .filter { $0.capital != "" }
+                    self.notify(handler: .didLoad)
+                } else {
+                    self.notify(handler: .faild(error: error))
                 }
             }
         }
