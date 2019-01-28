@@ -10,13 +10,17 @@ import Foundation
 
 public class CountryData {
     
-    public var country: Country
+    public let country: Country
     public var weather: Weather?
     public var date: Date?
     
-    public init(country: Country) {
+    public init(country: Country, weather: Weather?) {
         self.country = country
-        self.weather = nil
+        self.weather = weather
+    }
+    
+    public convenience init(country: Country) {
+        self.init(country: country, weather: nil)
     }
 }
 
