@@ -12,7 +12,9 @@ import UIKit
 enum F {
     
     typealias Completion<Value> = (Value) -> ()
+    typealias Execute<Value> = (Value) -> ()
     typealias VoidExecute = () -> ()
+    typealias VoidCompletion = () -> ()
 }
 
 func cast<Value, Result>(_ value: Value) -> Result? {
