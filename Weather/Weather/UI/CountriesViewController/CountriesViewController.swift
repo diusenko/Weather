@@ -16,12 +16,12 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     private let manager  = Manager<[CountryJSON]>()
     
-    private  let networkManager = NetworkManager<[CountryJSON]>()
+    private  let networkManager = RequestService<[CountryJSON]>()
     private  let url = URL(string: "https://restcountries.eu/rest/v2/all")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.countriesTableView.register(CountryTableViewCell.self)
+        self.rootView?.countriesTableView?.register(CountryTableViewCell.self)
    
         self.title = Constant.capital
         
@@ -42,7 +42,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
                             CountryData(country: Country(countryJSON: $0))
                         }
                     DispatchQueue.main.async {
-                        self.rootView?.countriesTableView.reloadData()
+                        self.rootView?.countriesTableView?.reloadData()
                     }
                 } else {
                     print(error.debugDescription)
@@ -59,9 +59,10 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource, U
         animated: Bool
     ) {
         let controller: CountriesViewController? = cast(viewController)
-        let indexPath = controller?.rootView?.countriesTableView.indexPathForSelectedRow
+        let tableView = controller?.rootView?.countriesTableView
+        let indexPath = tableView?.indexPathForSelectedRow
         indexPath.do {
-            controller?.rootView?.countriesTableView.reloadRow(at: $0, with: .bottom)
+            tableView?.reloadRow(at: $0, with: .bottom)
         }
     }
     
