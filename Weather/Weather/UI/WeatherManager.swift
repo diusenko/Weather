@@ -27,7 +27,12 @@ class WeatherManager: ObservableObject<Event> {
     
     public init(country: Country) {
         self.capital = country.capital
-        self.url = URL(string: WeatherConstant.link(country.capital))
+        
+        self.url = WeatherConstant
+            .link(country.capital)
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            .flatMap(URL.init)
+
         super.init()
         self.fillModel()
     }
