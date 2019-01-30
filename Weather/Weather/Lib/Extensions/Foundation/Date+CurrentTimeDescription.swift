@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
     
-    var currentTimeDescription: String {
+    var shortDescription: String {
         return DateFormatter().currentTime.string(from: self)
     }
 }
