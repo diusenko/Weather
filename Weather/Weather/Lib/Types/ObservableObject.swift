@@ -8,11 +8,12 @@
 
 import Foundation
 
-class ObservableObject<State> {
+public class ObservableObject<State> {
     
     private let atomicObservers = Atomic([Observer]())
     
-    func observer(handler: @escaping Observer.Handler) -> Observer {
+    @discardableResult
+    public func observer(handler: @escaping Observer.Handler) -> Observer {
         return self.atomicObservers.modify {
             let observer = Observer(sender: self, handler: handler)
             $0.append(observer)
@@ -21,7 +22,7 @@ class ObservableObject<State> {
         }
     }
     
-    func notify(handler: State) {
+    public func notify(handler: State) {
         self.atomicObservers.modify {
             $0 = $0.filter { $0.isCancelled }
             $0.forEach { $0.handler(handler) }
