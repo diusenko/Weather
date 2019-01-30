@@ -11,6 +11,7 @@ import Foundation
 public struct WeatherJSON: Decodable {
     
     public var main: Main
+    public var dt: Double
     
     public struct Main: Decodable {
         
@@ -18,7 +19,8 @@ public struct WeatherJSON: Decodable {
         var temperatureMin: Double
         var temperatureMax: Double
         
-        enum CodingKeys: String, CodingKey {
+        private enum CodingKeys: String, CodingKey {
+            
             case temperature = "temp"
             case temperatureMin = "temp_min"
             case temperatureMax = "temp_max"

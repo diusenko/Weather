@@ -12,47 +12,63 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
-    private let manager = CountryDataManager()
+    private var model = CountriesDataModel() {
+        didSet {
+            dispatchOnMain(self.rootView?.countriesTableView?.reloadData)
+        }
+    }
+    
+    private var selectedIndexPath: IndexPath?
+    
+    private var countryManager = CountryManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rootView?.countriesTableView?.register(CountryTableViewCell.self)
+        
+        let tableView = self.rootView?.countriesTableView
+        tableView?.register(CountryTableViewCell.self)
    
         self.title = Constant.capital
         
         let navigationController = self.navigationController
-        navigationController?.delegate = self
         navigationController?.title = Constant.capital
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        self.countryManager.fillModel { countries in
+            countries.do { countries in
+                let data = countries.map(CountryData.init)
+                
+                data.forEach {
+                    $0.observer { _ in
+                        dispatchOnMain {
+                            self.selectedIndexPath.do {
+                                self.rootView?.countriesTableView?.reloadRow(at: $0, with: .automatic)
+                            }
+                        }
+                    }
+                }
+                
+                self.model = CountriesDataModel(values: data)
+            }
+        }
     }
 }
 
-extension CountriesViewController: UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
-    
-    func navigationController(_ navigationController: UINavigationController,
-        didShow viewController: UIViewController,
-        animated: Bool
-    ) {
-        let controller: CountriesViewController? = cast(viewController)
-        let tableView = controller?.rootView?.countriesTableView
-        let indexPath = tableView?.indexPathForSelectedRow
-        indexPath.do {
-            tableView?.reloadRow(at: $0, with: .bottom)
-        }
-    }
+extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let countryData = self.manager.model[indexPath.row]
+        self.selectedIndexPath = indexPath
+        let countryData = self.model.values[indexPath.row]
         let weatherViewController = WeatherViewController(data: countryData)
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.manager.model.count
+        return self.model.values.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = self.manager.model[indexPath.row]
+        let item = self.model.values[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
             $0.fill(with: item)

@@ -29,20 +29,13 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
         super.viewDidLoad()
         self.navigationItem.title = Constant.weather
         
-        let weatherManager = self.weatherManager
-        //FIX IT
-        _ = weatherManager.observer {
-            switch $0 {
-            case .willLoad:
-                return
-            case .didLoad:
-                self.model.weather = weatherManager.model
-                self.model.date = Date()
-                DispatchQueue.main.async {
-                    self.rootView?.fill(with: self.model)
+        let model = self.model
+        self.weatherManager.fillModel {
+            $0.do {
+                model.weather = $0
+                dispatchOnMain {
+                    self.rootView?.fill(with: model)
                 }
-            case .faild(let error):
-                print(error ?? "")
             }
         }
     }

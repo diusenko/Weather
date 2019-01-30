@@ -8,43 +8,48 @@
 
 import Foundation
 
-public class CountryData {
+public class CountryData: ObservableObject<CountryData.Event> {
     
-    public let country: Country
-    public var weather: Weather?
-    public var date: Date?
+    public enum Event {
+        case weatherChanged(Weather?)
+        case countryChanged(Country)
+    }
+    
+    public var country: Country {
+        get { return self.wrapperCountry.value }
+        set {
+            self.wrapperCountry.value = newValue
+        }
+    }
+    
+    public var weather: Weather? {
+        get { return self.wrapperWeather.value }
+        set {
+            self.wrapperWeather.value = newValue
+        }
+    }
+    
+    private var wrapperCountry: Wrapper<Country>
+    private var wrapperWeather: Wrapper<Weather?>
     
     public init(country: Country, weather: Weather?) {
-        self.country = country
-        self.weather = weather
+        self.wrapperCountry = Wrapper(country)
+        self.wrapperWeather = Wrapper(weather)
+        super.init()
+        self.subscribe()
     }
     
     public convenience init(country: Country) {
         self.init(country: country, weather: nil)
     }
-}
-
-public class Weather {
-
-    public var temperature: Int
-    public var minTemperature: Int
-    public var maxTemperature: Int
     
-    public init(weatherJSON: WeatherJSON) {
-        let weather = weatherJSON.main
-        self.temperature = Int(weather.temperature)
-        self.minTemperature = Int(weather.temperatureMin)
-        self.maxTemperature = Int(weather.temperatureMax)
-    }
-}
-
-public class Country {
-    
-    public var name: String
-    public var capital: String
-    
-    public init(countryJSON: CountryJSON) {
-        self.name = countryJSON.name
-        self.capital = countryJSON.capital
+    private func subscribe() {
+        self.wrapperCountry.observer { country in
+            self.notify(handler: .countryChanged(country))
+        }
+        
+        self.wrapperWeather.observer { weather in
+            self.notify(handler: .weatherChanged(weather))
+        }
     }
 }
