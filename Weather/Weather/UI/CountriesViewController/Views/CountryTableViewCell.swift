@@ -20,10 +20,14 @@ class CountryTableViewCell: TableViewCell {
         
         self.country?.text = country.name
         self.capital?.text = country.capital
-        self.temperature?.text = "" // need Refactoring
         data.weather.do {
            self.temperature?.text = $0.temperature.description + Constant.celsius
         }
-        self.date?.text = data.date?.currentTimeDescription
+        self.date?.text = data.weather?.date.shortDescription
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.temperature?.text = ""
     }
 }
