@@ -17,7 +17,7 @@ fileprivate struct WeatherConstant {
     }
 }
 
-class WeatherManager: ObservableObject<Event> {
+class WeatherManager {
     
     public private(set) var model: Weather?
     
@@ -32,21 +32,15 @@ class WeatherManager: ObservableObject<Event> {
             .link(country.capital)
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             .flatMap(URL.init)
-
-        super.init()
-        self.fillModel()
     }
     
     // Public???
-    private func fillModel() {
+    public func fillModel(completion: @escaping F.Completion<Weather?>) {
         if let url = self.url {
             self.networkManager.loadData(url: url) { data, error in
-                self.notify(handler: .willLoad)
                 if let data = data {
                     self.model = Weather(weatherJSON: data)
-                    self.notify(handler: .didLoad)
-                } else {
-                    self.notify(handler: .faild(error: error))
+                    completion(self.model)
                 }
             }
         }
