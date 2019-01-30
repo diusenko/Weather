@@ -28,3 +28,9 @@ func when<Result>(_ condition: Bool, execute: () -> Result?) -> Result? {
 func toString(_ cls: AnyClass) -> String {
     return String(describing: cls)
 }
+
+func dispatchOnMain(_ execute: F.VoidExecute?) {
+    DispatchQueue.main.async {
+        execute?()
+    }
+}
