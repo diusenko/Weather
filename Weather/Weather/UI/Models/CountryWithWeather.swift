@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CountryData: ObservableObject<CountryData.Event> {
+public class CountryWithWeather: ObservableObject<CountryWithWeather.Event> {
     
     public enum Event {
         case weatherChanged(Weather?)

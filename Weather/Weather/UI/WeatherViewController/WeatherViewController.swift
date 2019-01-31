@@ -12,10 +12,10 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = WeatherView
     
-    private let model: CountryData
+    private let model: CountryWithWeather
     private let weatherManager: WeatherManager
     
-    init(data: CountryData) {
+    init(data: CountryWithWeather) {
         self.model = data
         self.weatherManager = .init(country: data.country)
         super.init(nibName: nil, bundle: nil)

@@ -17,7 +17,7 @@ class WeatherView: UIView {
         super.layoutSubviews()
     }
     
-    public func fill(with data: CountryData) {
+    public func fill(with data: CountryWithWeather) {
         data.weather.do {
             self.temperature?.text = $0.temperature.description + UnitTemperature.celsius.symbol
         }

@@ -45,7 +45,7 @@
 		3F7B3E0D21E74D3800759A69 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DFA21E74D3800759A69 /* Cancellable.swift */; };
 		3F8C155F21F0CFF30053C675 /* Date+CurrentTimeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8C155E21F0CFF30053C675 /* Date+CurrentTimeDescription.swift */; };
 		3F995AAC21EF64500030B8E4 /* URLSession+ResumeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F995AAB21EF64500030B8E4 /* URLSession+ResumeSession.swift */; };
-		3F995AAE21EF67D90030B8E4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F995AAD21EF67D90030B8E4 /* Model.swift */; };
+		3F995AAE21EF67D90030B8E4 /* CountryWithWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F995AAD21EF67D90030B8E4 /* CountryWithWeather.swift */; };
 		3F99E63821EC819F00E2C08E /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E63721EC819F00E2C08E /* RequestService.swift */; };
 		3F99E63A21EC850400E2C08E /* ColorRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E63921EC850400E2C08E /* ColorRepresentable.swift */; };
 		3F99E63D21EC8E6800E2C08E /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99E63B21EC8E6800E2C08E /* WeatherViewController.swift */; };
@@ -123,7 +123,7 @@
 		3F7B3DFA21E74D3800759A69 /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		3F8C155E21F0CFF30053C675 /* Date+CurrentTimeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+CurrentTimeDescription.swift"; sourceTree = "<group>"; };
 		3F995AAB21EF64500030B8E4 /* URLSession+ResumeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+ResumeSession.swift"; sourceTree = "<group>"; };
-		3F995AAD21EF67D90030B8E4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3F995AAD21EF67D90030B8E4 /* CountryWithWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryWithWeather.swift; sourceTree = "<group>"; };
 		3F99E63721EC819F00E2C08E /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		3F99E63921EC850400E2C08E /* ColorRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRepresentable.swift; sourceTree = "<group>"; };
 		3F99E63B21EC8E6800E2C08E /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			children = (
 				3F61FBDB21E7808C00649F6D /* CountryJSON.swift */,
 				3F99E64921ECCF1500E2C08E /* WeatherJSON.swift */,
-				3F995AAD21EF67D90030B8E4 /* Model.swift */,
+				3F995AAD21EF67D90030B8E4 /* CountryWithWeather.swift */,
 				3F4ED3A222007053008A2EF0 /* Weather.swift */,
 				3F4ED3A42200706E008A2EF0 /* Country.swift */,
 			);
@@ -509,7 +509,7 @@
 				3F99E64221EC9F8800E2C08E /* UIColor+Extensions.swift in Sources */,
 				3F7B3E0B21E74D3800759A69 /* Optional+Extensions.swift in Sources */,
 				3F582CF021EDE6AA00898E3E /* CountryTableViewCell.swift in Sources */,
-				3F995AAE21EF67D90030B8E4 /* Model.swift in Sources */,
+				3F995AAE21EF67D90030B8E4 /* CountryWithWeather.swift in Sources */,
 				3F5E36F121E732CF006D5B1D /* AppDelegate.swift in Sources */,
 				3F4ED3A122006953008A2EF0 /* Wrapper.swift in Sources */,
 				3F8C155F21F0CFF30053C675 /* Date+CurrentTimeDescription.swift in Sources */,
@@ -718,6 +718,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -735,6 +736,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

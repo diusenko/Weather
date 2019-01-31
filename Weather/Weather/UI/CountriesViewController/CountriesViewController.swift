@@ -40,7 +40,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     private func setupModel() {
         self.countryManager.fillModel { countries in
             countries.do { countries in
-                let data = countries.map(CountryData.init)
+                let data = countries.map(CountryWithWeather.init)
                 
                 data.forEach {
                     $0.observer { _ in

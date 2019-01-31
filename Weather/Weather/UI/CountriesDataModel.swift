@@ -8,11 +8,11 @@
 
 import Foundation
 
-class CountriesDataModel: ObservableObject<CountryData.Event> {
+class CountriesDataModel: ObservableObject<CountryWithWeather.Event> {
 
-    public var values: [CountryData]
+    public var values: [CountryWithWeather]
 
-    public init(values: [CountryData] = []) {
+    public init(values: [CountryWithWeather] = []) {
         self.values = values
         super.init()
         self.subscribe()
