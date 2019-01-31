@@ -29,8 +29,8 @@ public class CountryData: ObservableObject<CountryData.Event> {
         }
     }
     
-    private var wrapperCountry: Wrapper<Country>
-    private var wrapperWeather: Wrapper<Weather?>
+    private let wrapperCountry: Wrapper<Country>
+    private let wrapperWeather: Wrapper<Weather?>
     
     public init(country: Country, weather: Weather?) {
         self.wrapperCountry = Wrapper(country)

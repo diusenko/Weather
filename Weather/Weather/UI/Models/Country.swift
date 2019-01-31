@@ -10,8 +10,8 @@ import Foundation
 
 public class Country {
     
-    public var name: String
-    public var capital: String
+    public let name: String
+    public let capital: String
     
     public init(countryJSON: CountryJSON) {
         self.name = countryJSON.name

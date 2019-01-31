@@ -20,7 +20,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     private var selectedIndexPath: IndexPath?
     
-    private var countryManager = CountryManager()
+    private let countryManager = CountryManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,10 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         navigationController?.title = Constant.capital
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        self.setupModel()
+    }
+    
+    private func setupModel() {
         self.countryManager.fillModel { countries in
             countries.do { countries in
                 let data = countries.map(CountryData.init)

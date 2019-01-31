@@ -10,10 +10,10 @@ import Foundation
 
 public class Weather {
     
-    public var temperature: Int
-    public var minTemperature: Int
-    public var maxTemperature: Int
-    public var date: Date
+    public let temperature: Int
+    public let minTemperature: Int
+    public let maxTemperature: Int
+    public let date: Date
     
     public init(weatherJSON: WeatherJSON) {
         let weather = weatherJSON.main

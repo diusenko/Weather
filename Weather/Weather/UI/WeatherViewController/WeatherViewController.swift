@@ -12,8 +12,8 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = WeatherView
     
-    private var model: CountryData
-    private var weatherManager: WeatherManager
+    private let model: CountryData
+    private let weatherManager: WeatherManager
     
     init(data: CountryData) {
         self.model = data
