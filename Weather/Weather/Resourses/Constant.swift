@@ -11,6 +11,6 @@ import Foundation
 public struct Constant {
     
     static let weather = "Weather"
-    static let capital = "Capital"
+    static let countries = "Countries"
     static let celsius = UnitTemperature.celsius.symbol
 }
