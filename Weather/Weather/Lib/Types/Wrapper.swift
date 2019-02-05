@@ -10,14 +10,17 @@ import Foundation
 
 public class Wrapper<Value>: ObservableObject<Value> {
     
-    public var value: Value {
-        didSet {
-            self.notify(handler: self.value)
-        }
-    }
+    private(set) var value: Value
     
     public init(_ value: Value) {
         self.value = value
     }
     
+    public func modify<Result>(action: (inout Value) -> Result) -> Result {
+        defer {
+            self.notify(handler: self.value)
+        }
+        
+        return action(&self.value)
+    }
 }
