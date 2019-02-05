@@ -13,14 +13,8 @@ class WeatherView: UIView {
     @IBOutlet var temperature: UILabel?
     @IBOutlet var capital: UILabel?
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    public func fill(with data: CountryWithWeather) {
-        data.weather.do {
-            self.temperature?.text = $0.temperature.description + UnitTemperature.celsius.symbol
-        }
-        self.capital?.text = data.country.capital.description
+    public func fill(with data: Country) {
+        self.temperature?.text = data.weather.map { $0.temperature.description + UnitTemperature.celsius.symbol }
+        self.capital?.text = data.capital.description
     }
 }
