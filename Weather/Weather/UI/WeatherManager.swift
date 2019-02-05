@@ -19,30 +19,36 @@ fileprivate struct WeatherConstant {
 
 class WeatherManager {
     
-    public private(set) var model: Weather?
+    private let requestService: RequestService<WeatherJSON>
     
-    private let networkManager = RequestService<WeatherJSON>() // Refactoring
-    private let url: URL?
-    private let capital: String
-    
-    public init(country: Country) {
-        self.capital = country.capital
-        
-        self.url = WeatherConstant
-            .link(country.capital)
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            .flatMap(URL.init)
+    public init(requestService: RequestService<WeatherJSON> = RequestService<WeatherJSON>()) {
+        self.requestService = requestService
     }
     
-    // Public???
-    public func fillModel(completion: @escaping F.Completion<Weather?>) {
-        if let url = self.url {
-            self.networkManager.loadData(url: url) { data, error in
+    public func fillModel(country: Wrapper<Country>) {
+        if let url = self.url(with: country.value.capital) {
+            self.requestService.loadData(url: url) { data, error in
                 if let data = data {
-                    self.model = Weather(weatherJSON: data)
-                    completion(self.model)
+                    let main = data.main
+                    let date = Date(timeIntervalSince1970: TimeInterval(data.dt))
+                    
+                    country.modify {
+                        $0.weather = Weather(
+                        temperature: Int(main.temperature),
+                        date: date,
+                        minTemperature: Int(main.temperatureMin),
+                        maxTemperature: Int(main.temperatureMax)
+                        )
+                    }
                 }
             }
         }
+    }
+    
+    private func url(with countryName: String) -> URL? {
+        return WeatherConstant
+            .link(countryName)
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            .flatMap(URL.init)
     }
 }
