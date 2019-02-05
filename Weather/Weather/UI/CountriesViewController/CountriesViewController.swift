@@ -12,48 +12,44 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
-    private var model = CountriesDataModel() {
-        didSet {
-            dispatchOnMain(self.rootView?.countriesTableView?.reloadData)
+    private var model = CountriesArrayModel()
+    
+    private let countryManager: CountryManager
+    
+    private let cancelable = CancellableProperty()
+    
+    init(countryManager: CountryManager = CountryManager()) {
+        self.countryManager = countryManager
+        super.init(nibName: nil, bundle: nil)
+        
+        self.cancelable.value = self.model.observer {
+            switch $0 {
+            case .didUpdate(_, _): self.updateTableView() // FixIt
+            case .didAppend: self.updateTableView()
+            case .didRemove(_): self.updateTableView()
+            }
         }
+        
+        self.countryManager.fillModel(countries: self.model)
     }
     
-    private var selectedIndexPath: IndexPath?
-    
-    private let countryManager = CountryManager()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tableView = self.rootView?.countriesTableView
-        tableView?.register(CountryTableViewCell.self)
+        self.rootView?.countriesTableView?.register(CountryTableViewCell.self)
    
-        self.title = Constant.capital
+        self.title = Constant.countries
         
-        let navigationController = self.navigationController
-        navigationController?.title = Constant.capital
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        self.setupModel()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    private func setupModel() {
-        self.countryManager.fillModel { countries in
-            countries.do { countries in
-                let data = countries.map(CountryWithWeather.init)
-                
-                data.forEach {
-                    $0.observer { _ in
-                        dispatchOnMain {
-                            self.selectedIndexPath.do {
-                                self.rootView?.countriesTableView?.reloadRow(at: $0, with: .automatic)
-                            }
-                        }
-                    }
-                }
-                
-                self.model = CountriesDataModel(values: data)
-            }
+    private func updateTableView() {
+        dispatchOnMain {
+            self.rootView?.countriesTableView?.reloadData()
         }
     }
 }
@@ -61,9 +57,18 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
 extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
-        let countryData = self.model.values[indexPath.row]
-        let weatherViewController = WeatherViewController(data: countryData)
+        let countryData = self.model[indexPath.row]
+        
+        let manager = WeatherManager()
+        
+        let weatherViewController = WeatherViewController(country: countryData, manager: manager)
+        
+        countryData.observer { _ in
+            dispatchOnMain {
+                tableView.reloadRow(at: indexPath, with: .automatic)
+            }
+        }
+        
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
@@ -76,7 +81,7 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
             $0.fill(with: item)
-        } 
+        }
         
         return cell
     }
