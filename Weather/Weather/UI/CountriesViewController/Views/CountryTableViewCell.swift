@@ -15,19 +15,13 @@ class CountryTableViewCell: TableViewCell {
     @IBOutlet var temperature: UILabel?
     @IBOutlet var date: UILabel?
     
-    public func fill(with data: CountryWithWeather) {
-        let country = data.country
+    public func fill(with capital: Country) {
         
-        self.country?.text = country.name
-        self.capital?.text = country.capital
-        data.weather.do {
-           self.temperature?.text = $0.temperature.description + Constant.celsius
+        self.country?.text = capital.name
+        self.capital?.text = capital.capital
+        self.temperature?.text = capital.weather.map {
+            $0.temperature.description + Constant.celsius
         }
-        self.date?.text = data.weather?.date.shortDescription
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.temperature?.text = ""
+        self.date?.text = capital.weather?.date.shortDescription
     }
 }
