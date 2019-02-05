@@ -198,6 +198,7 @@
 				3F5E36F921E732D0006D5B1D /* LaunchScreen.storyboard */,
 				3F5E36FC21E732D0006D5B1D /* Info.plist */,
 				3F99E64321EC9FE200E2C08E /* Resourses */,
+				3F61FBDA21E7806E00649F6D /* Models */,
 				3F7B3DBC21E738CA00759A69 /* UI */,
 				3F7B3DE021E74D3800759A69 /* Lib */,
 			);
@@ -225,9 +226,9 @@
 		3F61FBDA21E7806E00649F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3FB8730F21FF00DF0095901C /* CountriesArrayModel.swift */,
 				3F61FBDB21E7808C00649F6D /* CountryJSON.swift */,
 				3F99E64921ECCF1500E2C08E /* WeatherJSON.swift */,
+				3FB8730F21FF00DF0095901C /* CountriesArrayModel.swift */,
 				3F4ED3A222007053008A2EF0 /* Weather.swift */,
 				3F4ED3A42200706E008A2EF0 /* Country.swift */,
 			);
@@ -240,7 +241,6 @@
 				3F2BF96821F9B3FC0030E595 /* WeatherManager.swift */,
 				3F2BF96A21F9B40E0030E595 /* CountryManager.swift */,
 				3F99E63721EC819F00E2C08E /* RequestService.swift */,
-				3F61FBDA21E7806E00649F6D /* Models */,
 				3F7B3DC021E73A4100759A69 /* CountriesViewController */,
 				3F7B3DBD21E7390700759A69 /* WeatherViewController */,
 			);
