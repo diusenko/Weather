@@ -15,19 +15,19 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     private let country: ObservableWrapper<Country>
     private let weatherManager: WeatherNetworkService
     
-    init(country: ObservableWrapper<Country>, manager: WeatherNetworkService = WeatherNetworkService()) {
+    init(country: ObservableWrapper<Country>, manager: WeatherNetworkService = .init()) {
         self.country = country
         self.weatherManager = manager
-    
-        self.weatherManager.fillModel(country: country)
         
         super.init(nibName: nil, bundle: nil)
         
-        self.country.observer { country in
+        country.observer { country in
             dispatchOnMain {
                 self.rootView?.fill(with: country)
             }
         }
+        
+        manager.fillModel(country: country)
     }
     
     required init?(coder aDecoder: NSCoder) {
