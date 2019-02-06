@@ -9,26 +9,29 @@
 import Foundation
 
 class CountryNetworkService {
-    private let requestService: RequestService<[CountryJSON]>
+    private let requestService: RequestService
     private let url = URL(string: "https://restcountries.eu/rest/v2/all")
     
-    init(requestService: RequestService<[CountryJSON]> = RequestService<[CountryJSON]>()) {
+    init(requestService: RequestService = .init()) {
         self.requestService = requestService
     }
     
-    public func fillModel(countries: CountriesArrayModel) {
+    public func fillModel(model: CountriesArrayModel) {
         if let url = self.url {
             self.requestService.loadData(url: url) { data, error in
-                if let data = data {
-                    let countriesFromData = data
-                        .filter { $0.capital != "" }
-                        .map {
-                            Country.init(name: $0.name, capitalName: $0.capital)
-                        }
-                    
-                    countries.append(countriesFromData)
-                }
+                data.flatMap { try? JSONDecoder().decode([CountryJSON].self, from: $0) }
+                    .do { model.append(countries($0)) }
             }
         }
     }
+}
+
+fileprivate let countries: ([CountryJSON]) -> [Country] = { json in
+    json
+        .filter { $0.capital != "" }
+        .map(country)
+}
+
+fileprivate let country: (CountryJSON) -> Country = {
+    Country(name: $0.name, capitalName: $0.capital)
 }
