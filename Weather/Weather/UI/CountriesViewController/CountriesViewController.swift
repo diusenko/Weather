@@ -12,14 +12,15 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = CountriesView
     
-    private var model = CountriesArrayModel()
+    private let model: CountriesArrayModel
     
-    private let countryManager: CountryManager
+    private let networkService: CountryNetworkService
     
     private let cancelable = CancellableProperty()
     
-    init(countryManager: CountryManager = CountryManager()) {
-        self.countryManager = countryManager
+    init(model: CountriesArrayModel = CountriesArrayModel(), networkService: CountryNetworkService = CountryNetworkService()) {
+        self.networkService = networkService
+        self.model = model
         super.init(nibName: nil, bundle: nil)
         
         self.cancelable.value = self.model.observer {
@@ -30,7 +31,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
             }
         }
         
-        self.countryManager.fillModel(countries: self.model)
+        self.networkService.fillModel(countries: self.model)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,9 +60,7 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let countryData = self.model[indexPath.row]
         
-        let manager = WeatherManager()
-        
-        let weatherViewController = WeatherViewController(country: countryData, manager: manager)
+        let weatherViewController = WeatherViewController(country: countryData)
         
         countryData.observer { _ in
             dispatchOnMain {
