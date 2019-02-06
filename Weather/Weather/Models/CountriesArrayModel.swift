@@ -11,7 +11,7 @@ import Foundation
 class CountriesArrayModel: ObservableObject<CountriesArrayModel.Event> {
 
     public enum Event {
-        case didAppend
+        case didAppend([Country])
         case didRemove(Country)
     }
     
@@ -27,13 +27,12 @@ class CountriesArrayModel: ObservableObject<CountriesArrayModel.Event> {
     }
     
     func append(_ country: Country) {
-        self.values.append(country)
-        self.notify(handler: .didAppend)
+        self.append([country])
     }
     
     func append(_ countries: [Country]) {
         self.values.append(contentsOf: countries)
-        self.notify(handler: .didAppend)
+        self.notify(handler: .didAppend(countries))
     }
     
     func remove(at index: Int) {
