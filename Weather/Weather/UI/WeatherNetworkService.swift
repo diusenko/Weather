@@ -19,37 +19,35 @@ fileprivate struct WeatherConstant {
 
 class WeatherNetworkService {
     
-    private let requestService: RequestService<WeatherJSON>
+    private let requestService: RequestService
     
-    public init(requestService: RequestService<WeatherJSON> = RequestService<WeatherJSON>()) {
+    public init(requestService: RequestService = .init()) {
         self.requestService = requestService
     }
     
     public func fillModel(country: ObservableWrapper<Country>) {
         if let url = self.url(with: country.value.capital) {
             self.requestService.loadData(url: url) { data, error in
-                if let data = data {
-                    let main = data.main
-                    let date = Date(timeIntervalSince1970: TimeInterval(data.dt))
-                    let weather = Weather(
-                        temperature: Int(main.temperature),
-                        date: date,
-                        minTemperature: Int(main.temperatureMin),
-                        maxTemperature: Int(main.temperatureMax)
-                    )
-                    
-                    country.modify {
-                        $0.weather = weather
-                    }
-                }
+                data.flatMap { try? JSONDecoder().decode(WeatherJSON.self, from: $0) }
+                    .do { data in country.modify { $0.weather = weather(data) } }
             }
         }
     }
     
-    private func url(with countryName: String) -> URL? {
-        return WeatherConstant
-            .link(countryName)
+    private func url(with capitalName: String) -> URL? {
+        return capitalName
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            .map(WeatherConstant.link)
             .flatMap(URL.init)
     }
+}
+
+fileprivate let weather: (WeatherJSON) -> Weather = { json in
+    let main = json.main
+    return Weather(
+        temperature: Int(main.temperature),
+        date: Date(timeIntervalSince1970: json.dt),
+        minTemperature: Int(main.temperatureMin),
+        maxTemperature: Int(main.temperatureMax)
+    )
 }
