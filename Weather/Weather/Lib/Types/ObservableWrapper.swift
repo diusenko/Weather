@@ -1,5 +1,5 @@
 //
-//  Wrapper.swift
+//  ObservableWrapper.swift
 //  Weather
 //
 //  Created by Usenko Dmitry on 1/29/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Wrapper<Value>: ObservableObject<Value> {
+public class ObservableWrapper<Value>: ObservableObject<Value> {
     
     private(set) var value: Value
     

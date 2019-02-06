@@ -25,7 +25,7 @@ class WeatherNetworkService {
         self.requestService = requestService
     }
     
-    public func fillModel(country: Wrapper<Country>) {
+    public func fillModel(country: ObservableWrapper<Country>) {
         if let url = self.url(with: country.value.capital) {
             self.requestService.loadData(url: url) { data, error in
                 if let data = data {

@@ -22,8 +22,8 @@ class CountriesArrayModel: ObservableObject<CountriesArrayModel.Event> {
         super.init()
     }
     
-    subscript(_ index: Int) -> Wrapper<Country> {
-        return Wrapper(self.values[index])
+    subscript(_ index: Int) -> ObservableWrapper<Country> {
+        return ObservableWrapper(self.values[index])
     }
     
     func append(_ country: Country) {
