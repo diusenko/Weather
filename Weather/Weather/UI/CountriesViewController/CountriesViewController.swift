@@ -25,7 +25,6 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         
         self.cancelable.value = self.model.observer {
             switch $0 {
-            case .didUpdate(_, _): self.updateTableView() // FixIt
             case .didAppend: self.updateTableView()
             case .didRemove(_): self.updateTableView()
             }
