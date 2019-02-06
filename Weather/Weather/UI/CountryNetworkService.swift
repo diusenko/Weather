@@ -21,10 +21,11 @@ class CountryNetworkService {
             self.requestService.loadData(url: url) { data, error in
                 if let data = data {
                     let countriesFromData = data
+                        .filter { $0.capital != "" }
                         .map {
                             Country.init(name: $0.name, capitalName: $0.capital)
                         }
-                        .filter { $0.capital != "" }
+                    
                     countries.append(countriesFromData)
                 }
             }
