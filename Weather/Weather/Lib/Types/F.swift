@@ -6,7 +6,6 @@
 //  Copyright © 2018 Usenko Dmitry. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 enum F {
