@@ -16,6 +16,13 @@ enum F {
     typealias VoidCompletion = () -> ()
 }
 
+func side<Value>(_ value: Value, execute: (inout Value) -> ()) -> Value {
+    var mutableValue = value
+    execute(&mutableValue)
+    
+    return mutableValue
+}
+
 func cast<Value, Result>(_ value: Value) -> Result? {
     return value as? Result
 }
