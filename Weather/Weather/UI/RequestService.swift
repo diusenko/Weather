@@ -8,25 +8,15 @@
 
 import Foundation
 
-struct RequestService<Model> where Model: Decodable {
+struct RequestService {
     
-    public func loadData(url: URL, completion: @escaping (Model?, Error?) -> ()) {
+    public func loadData(url: URL, completion: @escaping (Data?, Error?) -> ()) {
         
         URLSession.shared.resumeSession(with: url) { (data, response, error) in
-            
-            guard error == nil else {
-                completion(nil, error)
-                
-                return
-            }
-            
             if let data = data {
-                do {
-                    let values = try JSONDecoder().decode(Model.self, from: data)
-                    completion(values, nil)
-                } catch {
-                    completion(nil, error)
-                }
+                completion(data, nil)
+            } else {
+                completion(nil, error)
             }
         }
     }
