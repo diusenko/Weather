@@ -75,12 +75,8 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = self.model.values[indexPath.row]
-        
-        let cell = tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
-            $0.fill(with: item)
+        return tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
+            $0.fill(with: self.model.values[indexPath.row])
         }
-        
-        return cell
     }
 }
