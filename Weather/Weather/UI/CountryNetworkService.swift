@@ -1,5 +1,5 @@
 //
-//  CountryManager.swift
+//  CountryNetworkService.swift
 //  Weather
 //
 //  Created by Usenko Dmitry on 1/24/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CountryManager {
+class CountryNetworkService {
     private let requestService: RequestService<[CountryJSON]>
     private let url = URL(string: "https://restcountries.eu/rest/v2/all")
     

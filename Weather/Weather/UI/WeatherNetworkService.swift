@@ -1,5 +1,5 @@
 //
-//  WeatherManager.swift
+//  WeatherNetworkService.swift
 //  Weather
 //
 //  Created by Usenko Dmitry on 1/24/19.
@@ -17,7 +17,7 @@ fileprivate struct WeatherConstant {
     }
 }
 
-class WeatherManager {
+class WeatherNetworkService {
     
     private let requestService: RequestService<WeatherJSON>
     
@@ -31,14 +31,15 @@ class WeatherManager {
                 if let data = data {
                     let main = data.main
                     let date = Date(timeIntervalSince1970: TimeInterval(data.dt))
-                    
-                    country.modify {
-                        $0.weather = Weather(
+                    let weather = Weather(
                         temperature: Int(main.temperature),
                         date: date,
                         minTemperature: Int(main.temperatureMin),
                         maxTemperature: Int(main.temperatureMax)
-                        )
+                    )
+                    
+                    country.modify {
+                        $0.weather = weather
                     }
                 }
             }
