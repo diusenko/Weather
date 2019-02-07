@@ -12,8 +12,8 @@ fileprivate struct WeatherConstant {
     
     static let link: (String) -> String = { capital in
         let query = "https://api.openweathermap.org/data/2.5/weather?q="
-        let unitsAndAppid = "&units=metric&APPID=93ed6d9a1885eeb796fe06b73dea3866"
-        return query + capital + unitsAndAppid
+        let unitsWithAppid = "&units=metric&APPID=93ed6d9a1885eeb796fe06b73dea3866"
+        return query + capital + unitsWithAppid
     }
 }
 
