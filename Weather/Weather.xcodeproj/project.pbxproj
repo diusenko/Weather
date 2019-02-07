@@ -177,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				3FB8731321FF54CC0095901C /* TableViewCell.swift */,
+				3F7B3DC021E73A4100759A69 /* CountriesViewController */,
+				3F7B3DBD21E7390700759A69 /* WeatherViewController */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,13 +250,11 @@
 		3F7B3DBC21E738CA00759A69 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				3F598CEE220AF36A0070022F /* Views */,
 				3F598CEF220B229B0070022F /* NetworkService.swift */,
 				3F2BF96821F9B3FC0030E595 /* WeatherNetworkService.swift */,
 				3F2BF96A21F9B40E0030E595 /* CountryNetworkService.swift */,
 				3F99E63721EC819F00E2C08E /* RequestService.swift */,
-				3F7B3DC021E73A4100759A69 /* CountriesViewController */,
-				3F7B3DBD21E7390700759A69 /* WeatherViewController */,
+				3F598CEE220AF36A0070022F /* Views */,
 			);
 			path = UI;
 			sourceTree = "<group>";
