@@ -11,13 +11,8 @@ import Foundation
 struct RequestService {
     
     public func loadData(url: URL, completion: @escaping (Data?, Error?) -> ()) {
-        
         URLSession.shared.resumeSession(with: url) { (data, response, error) in
-            if let data = data {
-                completion(data, nil)
-            } else {
-                completion(nil, error)
-            }
+            completion(data, error)
         }
     }
 }
