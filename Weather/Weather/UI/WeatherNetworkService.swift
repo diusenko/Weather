@@ -25,6 +25,7 @@ class WeatherNetworkService {
         self.requestService = requestService
     }
     
+    // Duplicate
     public func fillModel(country: ObservableWrapper<Country>) {
         if let url = self.url(with: country.value.capital) {
             self.requestService.loadData(url: url) { data, error in

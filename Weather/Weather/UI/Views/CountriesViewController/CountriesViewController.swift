@@ -23,11 +23,8 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
         self.model = model
         super.init(nibName: nil, bundle: nil)
         
-        self.cancelable.value = self.model.observer {
-            switch $0 {
-            case .didAppend: self.updateTableView()
-            case .didRemove(_): self.updateTableView()
-            }
+        self.cancelable.value = self.model.observer {_ in
+            self.updateTableView()
         }
         
         self.networkService.fillModel(model: self.model)
