@@ -12,16 +12,16 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     typealias RootView = WeatherView
     
-    private let country: ObservableWrapper<Country>
+    private let country: Country
     private let weatherManager: WeatherNetworkService
     
-    init(country: ObservableWrapper<Country>, manager: WeatherNetworkService = .init()) {
+    init(country: Country, manager: WeatherNetworkService = .init()) {
         self.country = country
         self.weatherManager = manager
         
         super.init(nibName: nil, bundle: nil)
         
-        country.observer { country in
+        country.observer { _ in
             dispatchOnMain {
                 self.rootView?.fill(with: country)
             }
@@ -36,6 +36,10 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = self.country.value.name
+        let country = self.country
+        
+        self.navigationItem.title = country.name
+        
+        self.rootView?.fill(with: country)
     }
 }

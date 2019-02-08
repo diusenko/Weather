@@ -15,29 +15,50 @@ class CountryTableViewCell: TableViewCell {
     @IBOutlet var temperature: UILabel?
     @IBOutlet var date: UILabel?
     
-//    private var countryModel: ObservableWrapper<Country>?
+//    var countryModel: Country? {
+//        didSet {
+//            self.fill()
+//        }
+//    }
+    
+    private var cancelableProperty = CancellableProperty()
     
     public func fill(with country: Country) {
         
-//        self.countryModel?.observer { country in
-//            print("hey")
-//            self.country?.text = country.name
-//            self.capital?.text = country.capital
-//            self.temperature?.text = country.weather.map {
-//                $0.temperature.description + Constant.celsius
-//            }
-//            self.date?.text = country.weather?.date.shortDescription
-//        }
-//
-//        self.countryModel?.modify {
-//            $0 = country
-//        }
-        
         self.country?.text = country.name
         self.capital?.text = country.capital
-        self.temperature?.text = country.weather.map {
-            $0.temperature.description + Constant.celsius
+
+        self.cancelableProperty.value = country.observer { weather in
+            dispatchOnMain {
+                self.temperature?.text = weather.map {
+                    $0.temperature.description + Constant.celsius
+                }
+                self.date?.text = weather?.date.shortDescription
+            }
         }
-        self.date?.text = country.weather?.date.shortDescription
+        
+//        self.country?.text = country.name
+//        self.capital?.text = country.capital
+//        self.temperature?.text = country.weather.map {
+//            $0.temperature.description + Constant.celsius
+//        }
+//        self.date?.text = country.weather?.date.shortDescription
     }
+    
+//    public func fill() {
+//        let countryModel = self.countryModel
+//
+//        self.country?.text = countryModel?.name
+//        self.capital?.text = countryModel?.capital
+//
+//        self.cancelableProperty.value = countryModel?.observer { weather in
+//            print("hey")
+//            dispatchOnMain {
+//                self.temperature?.text = weather.map {
+//                    $0.temperature.description + Constant.celsius
+//                }
+//                self.date?.text = weather?.date.shortDescription
+//            }
+//        }
+//    }
 }

@@ -26,11 +26,11 @@ class WeatherNetworkService {
     }
     
     // Duplicate
-    public func fillModel(country: ObservableWrapper<Country>) {
-        if let url = self.url(with: country.value.capital) {
+    public func fillModel(country: Country) {
+        if let url = self.url(with: country.capital) {
             self.requestService.loadData(url: url) { data, error in
                 data.flatMap { try? JSONDecoder().decode(WeatherJSON.self, from: $0) }
-                    .do { data in country.modify { $0.weather = weather(data) } }
+                    .do { country.weather = weather($0) }
             }
         }
     }

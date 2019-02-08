@@ -58,11 +58,11 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let weatherViewController = WeatherViewController(country: countryData)
         
-        countryData.observer { _ in
-            dispatchOnMain {
-                tableView.reloadRow(at: indexPath, with: .automatic)
-            }
-        }
+//        countryData.observer { _ in
+//            dispatchOnMain {
+//                tableView.reloadRow(at: indexPath, with: .automatic)
+//            }
+//        }
         
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
@@ -73,7 +73,10 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
-            $0.fill(with: self.model.values[indexPath.row])
+            
+            //$0.countryModel = self.model.values[indexPath.row]
+            
+            $0.fill(with: model.values[indexPath.row])
         }
     }
 }
