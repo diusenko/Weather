@@ -238,13 +238,21 @@
 		3F61FBDA21E7806E00649F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3F61FBDB21E7808C00649F6D /* CountryJSON.swift */,
-				3F99E64921ECCF1500E2C08E /* WeatherJSON.swift */,
+				3F73ADF2220DB21E00180432 /* JSON */,
 				3FB8730F21FF00DF0095901C /* CountriesArrayModel.swift */,
 				3F4ED3A222007053008A2EF0 /* Weather.swift */,
 				3F4ED3A42200706E008A2EF0 /* Country.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3F73ADF2220DB21E00180432 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3F61FBDB21E7808C00649F6D /* CountryJSON.swift */,
+				3F99E64921ECCF1500E2C08E /* WeatherJSON.swift */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		3F7B3DBC21E738CA00759A69 /* UI */ = {
