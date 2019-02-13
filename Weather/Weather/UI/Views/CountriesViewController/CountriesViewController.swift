@@ -16,18 +16,22 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     private let networkService: CountryNetworkService
     
-    private let cancelable = CancellableProperty()
+    private let observableCountries = CancellableProperty()
+    
+    private let task = CancellableProperty()
     
     init(model: CountriesArrayModel = .init(), networkService: CountryNetworkService = .init()) {
         self.networkService = networkService
         self.model = model
         super.init(nibName: nil, bundle: nil)
         
-        self.cancelable.value = self.model.observer {_ in
-            self.updateTableView()
+        self.observableCountries.value = self.model.observer {
+            if case .didAppend = $0 {
+                self.updateTableView()
+            }
         }
         
-        self.networkService.fillModel(model: self.model)
+        self.task.value = self.networkService.fillModel(model: self.model)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,12 +62,6 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let weatherViewController = WeatherViewController(country: countryData)
         
-//        countryData.observer { _ in
-//            dispatchOnMain {
-//                tableView.reloadRow(at: indexPath, with: .automatic)
-//            }
-//        }
-        
         self.navigationController?.pushViewController(weatherViewController, animated: true)
     }
     
@@ -73,10 +71,15 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withCellClass: CountryTableViewCell.self, for: indexPath) {
+            let country = self.model.values[indexPath.row]
+            $0.completion = {
+                dispatchOnMain {
+                    tableView.reloadRow(at: indexPath, with: .automatic)
+                }
+            }
             
-            //$0.countryModel = self.model.values[indexPath.row]
-            
-            $0.fill(with: model.values[indexPath.row])
+            $0.countryModel = country
+            //$0.fill(with: model.values[indexPath.row])
         }
     }
 }
