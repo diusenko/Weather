@@ -14,6 +14,7 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     
     private let country: Country
     private let weatherManager: WeatherNetworkService
+    private let task = CancellableProperty()
     
     init(country: Country, manager: WeatherNetworkService = .init()) {
         self.country = country
@@ -21,13 +22,13 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
         
         super.init(nibName: nil, bundle: nil)
         
-        country.observer { _ in
+        country.weather.observer { _ in
             dispatchOnMain {
                 self.rootView?.fill(with: country)
             }
         }
         
-        manager.fillModel(country: country)
+        task.value = manager.fillModel(country: country)
     }
     
     required init?(coder aDecoder: NSCoder) {
