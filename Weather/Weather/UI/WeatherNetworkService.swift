@@ -40,7 +40,7 @@ class WeatherNetworkService {
             return task
         }
         
-        let task = self.requestService.scheduledData(url: url) { result in
+        let task = self.requestService.scheduledRequest(url: url) { result in
             result
                 .analysis(
                     success: {

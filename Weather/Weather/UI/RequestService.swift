@@ -15,7 +15,7 @@ enum RequestServiceError: Error {
 
 protocol RequestServiceType {
     
-    func scheduledData(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask
+    func scheduledRequest(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask
 }
 
 class RequestService: RequestServiceType {
@@ -26,7 +26,7 @@ class RequestService: RequestServiceType {
         self.session = session
     }
     
-    public func scheduledData(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask {
+    public func scheduledRequest(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask {
         let task = self.session.dataTask(with: url) { (data, response, error) in
             completion(
                 Result(

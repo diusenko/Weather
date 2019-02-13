@@ -33,7 +33,7 @@ class CountryNetworkService {
             return task
         }
             
-        return self.requestService.scheduledData(url: url) { result in
+        return self.requestService.scheduledRequest(url: url) { result in
             result.analysis(
                 success: { data in
                     let decoder = try? JSONDecoder().decode([CountryJSON].self, from: data)
