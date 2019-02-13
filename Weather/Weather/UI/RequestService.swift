@@ -8,11 +8,38 @@
 
 import Foundation
 
-struct RequestService {
+enum RequestServiceError: Error {
+    case unknown
+    case failed(Error)
+}
+
+protocol RequestServiceType {
     
-    public func loadData(url: URL, completion: @escaping (Data?, Error?) -> ()) {
-        URLSession.shared.resumeSession(with: url) { (data, response, error) in
-            completion(data, error)
+    func scheduledData(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask
+}
+
+class RequestService: RequestServiceType {
+    
+    private let session: URLSession
+    
+    init(session: URLSession) {
+        self.session = session
+    }
+    
+    public func scheduledData(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask {
+        let task = self.session.dataTask(with: url) { (data, response, error) in
+            completion(
+                Result(
+                    value: data,
+                    error: error.map { .failed($0) },
+                    default: .unknown
+                )
+            )
         }
+        
+        let networkTask = NetworkTask(sessionTask: task)
+        task.resume()
+        
+        return networkTask
     }
 }
