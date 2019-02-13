@@ -10,9 +10,12 @@ import Foundation
 
 extension URLSession {
     
-    func resumeSession(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func resumeSession(with url: URL,
+        completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+    {
         self.dataTask(with: url) { (data, response, error) in
             completionHandler(data, response, error)
-        }.resume()
+        }
+        .resume()
     }
 }
