@@ -8,19 +8,15 @@
 
 import Foundation
 
-public class Country: ObservableObject<Weather?> {
+public class Country {
     
     public let name: String
     public let capital: String
-    public var weather: Weather? {
-        didSet {
-            self.notify(handler: self.weather)
-        }
-    }
+    public var weather: ObservableWrapper<Weather?>
     
     public init(name: String, capitalName: String, weather: Weather? = nil) {
         self.name = name
         self.capital = capitalName
-        self.weather = weather
+        self.weather = ObservableWrapper(weather)
     }
 }
