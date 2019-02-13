@@ -14,7 +14,10 @@ class WeatherView: UIView {
     @IBOutlet var capital: UILabel?
     
     public func fill(with data: Country) {
-        self.temperature?.text = data.weather.map { $0.temperature.description + UnitTemperature.celsius.symbol }
+        self.temperature?.text = data.weather.value.map {
+            $0.temperature.description + UnitTemperature.celsius.symbol
+        }
+        
         self.capital?.text = data.capital.description
     }
 }
