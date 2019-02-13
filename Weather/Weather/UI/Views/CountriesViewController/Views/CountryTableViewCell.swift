@@ -15,44 +15,24 @@ class CountryTableViewCell: TableViewCell {
     @IBOutlet var temperature: UILabel?
     @IBOutlet var date: UILabel?
     
-//    var countryModel: Country? {
-//        didSet {
-//            self.fill()
-//        }
-//    }
-    
-    private var cancelableProperty = CancellableProperty()
-    
-    public func fill(with country: Country) {
-        
-        self.country?.text = country.name
-        self.capital?.text = country.capital
-
-        self.cancelableProperty.value = country.observer { weather in
-            dispatchOnMain {
-                self.temperature?.text = weather.map {
-                    $0.temperature.description + Constant.celsius
-                }
-                self.date?.text = weather?.date.shortDescription
-            }
+    public var countryModel: Country? {
+        didSet {
+            self.prepeareObserver()
+            self.fill()
         }
-        
-//        self.country?.text = country.name
-//        self.capital?.text = country.capital
-//        self.temperature?.text = country.weather.map {
-//            $0.temperature.description + Constant.celsius
-//        }
-//        self.date?.text = country.weather?.date.shortDescription
     }
     
-//    public func fill() {
-//        let countryModel = self.countryModel
+    public var completion: F.VoidCompletion?
+    
+    public let cancelableProperty = CancellableProperty()
+    
+//    public func fill(with country: Country) {
 //
-//        self.country?.text = countryModel?.name
-//        self.capital?.text = countryModel?.capital
+//        self.country?.text = country.name
+//        self.capital?.text = country.capital
 //
-//        self.cancelableProperty.value = countryModel?.observer { weather in
-//            print("hey")
+//        self.cancelableProperty.value = country.weather.observer { weather in
+//            print("asdasd")
 //            dispatchOnMain {
 //                self.temperature?.text = weather.map {
 //                    $0.temperature.description + Constant.celsius
@@ -60,5 +40,48 @@ class CountryTableViewCell: TableViewCell {
 //                self.date?.text = weather?.date.shortDescription
 //            }
 //        }
+//
+////        self.country?.text = country.name
+////        self.capital?.text = country.capital
+////        self.temperature?.text = country.weather.value.map {
+////            $0.temperature.description + Constant.celsius
+////        }
+////        self.date?.text = country.weather.value?.date.shortDescription
 //    }
+    
+    private func prepeareObserver() {
+        self.cancelableProperty.value = self.countryModel?.weather.observer { weather in
+            print("dich")
+            dispatchOnMain {
+                self.setTemperatureAndDate()
+            }
+            self.completion?()
+            
+            self.cancelableProperty.value?.cancel() // LEGOFSKELET
+        }
+    }
+    
+    private func setTemperatureAndDate() {
+        let weather = self.countryModel?.weather.value
+        
+        self.temperature?.text = weather.map {
+            $0.temperature.description + Constant.celsius
+        }
+        
+        self.date?.text = weather?.date.shortDescription
+    }
+    
+    private func fill() {
+        let countryModel = self.countryModel
+
+        self.country?.text = countryModel?.name
+        self.capital?.text = countryModel?.capital
+        self.setTemperatureAndDate()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.cancelableProperty.value?.cancel()
+    }
 }
