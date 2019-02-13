@@ -15,6 +15,11 @@
 		3F582CF021EDE6AA00898E3E /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F582CEE21EDE6AA00898E3E /* CountryTableViewCell.swift */; };
 		3F582CF121EDE6AA00898E3E /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F582CEF21EDE6AA00898E3E /* CountryTableViewCell.xib */; };
 		3F582CF321EDF8ED00898E3E /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */; };
+		3F597E3C2212DDD300BFBE16 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F597E3B2212DDD300BFBE16 /* NetworkTask.swift */; };
+		3F597E3E2212E8E600BFBE16 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F597E3D2212E8E600BFBE16 /* Result.swift */; };
+		3F597E412212EFB500BFBE16 /* PrecedenceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F597E402212EFB500BFBE16 /* PrecedenceGroup.swift */; };
+		3F597E432212F17100BFBE16 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F597E422212F17100BFBE16 /* Operators.swift */; };
+		3F597E452213169B00BFBE16 /* URLSession+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F597E442213169B00BFBE16 /* URLSession+Default.swift */; };
 		3F598CF0220B229B0070022F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F598CEF220B229B0070022F /* NetworkService.swift */; };
 		3F5E36F121E732CF006D5B1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E36F021E732CF006D5B1D /* AppDelegate.swift */; };
 		3F5E36F821E732D0006D5B1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5E36F721E732D0006D5B1D /* Assets.xcassets */; };
@@ -87,6 +92,11 @@
 		3F582CEE21EDE6AA00898E3E /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		3F582CEF21EDE6AA00898E3E /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
 		3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		3F597E3B2212DDD300BFBE16 /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
+		3F597E3D2212E8E600BFBE16 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3F597E402212EFB500BFBE16 /* PrecedenceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecedenceGroup.swift; sourceTree = "<group>"; };
+		3F597E422212F17100BFBE16 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		3F597E442213169B00BFBE16 /* URLSession+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Default.swift"; sourceTree = "<group>"; };
 		3F598CEF220B229B0070022F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3F5E36ED21E732CE006D5B1D /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5E36F021E732CF006D5B1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +183,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3F597E3F2212EF7400BFBE16 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				3F7B3DE721E74D3800759A69 /* F.swift */,
+				3F597E402212EFB500BFBE16 /* PrecedenceGroup.swift */,
+				3F597E422212F17100BFBE16 /* Operators.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
 		3F598CEE220AF36A0070022F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,10 +258,10 @@
 		3F61FBDA21E7806E00649F6D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3F73ADF2220DB21E00180432 /* JSON */,
 				3FB8730F21FF00DF0095901C /* CountriesArrayModel.swift */,
-				3F4ED3A222007053008A2EF0 /* Weather.swift */,
 				3F4ED3A42200706E008A2EF0 /* Country.swift */,
+				3F4ED3A222007053008A2EF0 /* Weather.swift */,
+				3F73ADF2220DB21E00180432 /* JSON */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,9 +279,10 @@
 			isa = PBXGroup;
 			children = (
 				3F598CEF220B229B0070022F /* NetworkService.swift */,
-				3F2BF96821F9B3FC0030E595 /* WeatherNetworkService.swift */,
-				3F2BF96A21F9B40E0030E595 /* CountryNetworkService.swift */,
+				3F597E3B2212DDD300BFBE16 /* NetworkTask.swift */,
 				3F99E63721EC819F00E2C08E /* RequestService.swift */,
+				3F2BF96A21F9B40E0030E595 /* CountryNetworkService.swift */,
+				3F2BF96821F9B3FC0030E595 /* WeatherNetworkService.swift */,
 				3F598CEE220AF36A0070022F /* Views */,
 			);
 			path = UI;
@@ -270,9 +291,9 @@
 		3F7B3DBD21E7390700759A69 /* WeatherViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3F99E63F21EC8E7A00E2C08E /* WeatherView.swift */,
 				3F99E63B21EC8E6800E2C08E /* WeatherViewController.swift */,
 				3F99E63C21EC8E6800E2C08E /* WeatherViewController.xib */,
-				3F99E63F21EC8E7A00E2C08E /* WeatherView.swift */,
 			);
 			path = WeatherViewController;
 			sourceTree = "<group>";
@@ -281,9 +302,9 @@
 			isa = PBXGroup;
 			children = (
 				3F582CED21EDE65500898E3E /* Views */,
+				3F61FBD821E765F700649F6D /* CountriesView.swift */,
 				3F61FBD421E765DC00649F6D /* CountriesViewController.swift */,
 				3F61FBD521E765DC00649F6D /* CountriesViewController.xib */,
-				3F61FBD821E765F700649F6D /* CountriesView.swift */,
 			);
 			path = CountriesViewController;
 			sourceTree = "<group>";
@@ -291,10 +312,11 @@
 		3F7B3DE021E74D3800759A69 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				3F7B3DEB21E74D3800759A69 /* Mixin */,
-				3F7B3DE121E74D3800759A69 /* Types */,
+				3F597E3F2212EF7400BFBE16 /* Functions */,
 				3F7B3DED21E74D3800759A69 /* Extensions */,
+				3F7B3DEB21E74D3800759A69 /* Mixin */,
 				3F7B3DF921E74D3800759A69 /* Protocols */,
+				3F7B3DE121E74D3800759A69 /* Types */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -302,15 +324,15 @@
 		3F7B3DE121E74D3800759A69 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				3F4ED3A022006953008A2EF0 /* ObservableWrapper.swift */,
+				3F7B3DE921E74D3800759A69 /* Atomic.swift */,
 				3F7B3DE321E74D3800759A69 /* CancellableProperty.swift */,
-				3F7B3DE421E74D3800759A69 /* ObservableObject.swift */,
+				3F7B3DEA21E74D3800759A69 /* Duration.swift */,
 				3F7B3DE521E74D3800759A69 /* InfiniteSecuenceGenerator.swift */,
 				3F7B3DE621E74D3800759A69 /* ObservableObject.Observer.swift */,
-				3F7B3DE721E74D3800759A69 /* F.swift */,
+				3F7B3DE421E74D3800759A69 /* ObservableObject.swift */,
+				3F4ED3A022006953008A2EF0 /* ObservableWrapper.swift */,
 				3F7B3DE821E74D3800759A69 /* Queue.swift */,
-				3F7B3DE921E74D3800759A69 /* Atomic.swift */,
-				3F7B3DEA21E74D3800759A69 /* Duration.swift */,
+				3F597E3D2212E8E600BFBE16 /* Result.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -318,8 +340,8 @@
 		3F7B3DEB21E74D3800759A69 /* Mixin */ = {
 			isa = PBXGroup;
 			children = (
-				3F7B3DEC21E74D3800759A69 /* RootViewRepresentable.swift */,
 				3F99E63921EC850400E2C08E /* ColorRepresentable.swift */,
+				3F7B3DEC21E74D3800759A69 /* RootViewRepresentable.swift */,
 			);
 			path = Mixin;
 			sourceTree = "<group>";
@@ -328,8 +350,8 @@
 			isa = PBXGroup;
 			children = (
 				3F7B3DEE21E74D3800759A69 /* CoreGraphics */,
-				3F7B3DF021E74D3800759A69 /* UIKit */,
 				3F7B3DF221E74D3800759A69 /* Foundation */,
+				3F7B3DF021E74D3800759A69 /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -345,11 +367,11 @@
 		3F7B3DF021E74D3800759A69 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				3F7B3DF121E74D3800759A69 /* UIView+CornerRadius.swift */,
 				3F99E64121EC9F8800E2C08E /* UIColor+Extensions.swift */,
-				3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */,
-				3FA8754721F5BAE7001642B7 /* UITableView+ReloadRow.swift */,
 				3FB8731121FF50EF0095901C /* UINib+Extension.swift */,
+				3FA8754721F5BAE7001642B7 /* UITableView+ReloadRow.swift */,
+				3F582CF221EDF8ED00898E3E /* UITableViewCell+Extensions.swift */,
+				3F7B3DF121E74D3800759A69 /* UIView+CornerRadius.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -357,15 +379,16 @@
 		3F7B3DF221E74D3800759A69 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				3F995AAB21EF64500030B8E4 /* URLSession+ResumeSession.swift */,
-				3F7B3DF421E74D3800759A69 /* RangeReplaceableCollection+Extension.swift */,
-				3F7B3DF521E74D3800759A69 /* NSLocking+Extension.swift */,
-				3F7B3DF621E74D3800759A69 /* Strideable+Extension.swift */,
-				3F7B3DF721E74D3800759A69 /* Optional+Extensions.swift */,
 				3F8C155E21F0CFF30053C675 /* Date+CurrentTimeDescription.swift */,
 				3FA8754921F5E42F001642B7 /* DateFormatter+CurrentTime.swift */,
 				3F7B3DF321E74D3800759A69 /* DispatchQueue+Extensions.swift */,
 				3F7B3DF821E74D3800759A69 /* DispatchTime+Extension.swift */,
+				3F7B3DF521E74D3800759A69 /* NSLocking+Extension.swift */,
+				3F7B3DF721E74D3800759A69 /* Optional+Extensions.swift */,
+				3F7B3DF421E74D3800759A69 /* RangeReplaceableCollection+Extension.swift */,
+				3F7B3DF621E74D3800759A69 /* Strideable+Extension.swift */,
+				3F995AAB21EF64500030B8E4 /* URLSession+ResumeSession.swift */,
+				3F597E442213169B00BFBE16 /* URLSession+Default.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -552,15 +575,20 @@
 				3F7B3E0C21E74D3800759A69 /* DispatchTime+Extension.swift in Sources */,
 				3F7B3DFE21E74D3800759A69 /* InfiniteSecuenceGenerator.swift in Sources */,
 				3F7B3DFC21E74D3800759A69 /* CancellableProperty.swift in Sources */,
+				3F597E412212EFB500BFBE16 /* PrecedenceGroup.swift in Sources */,
 				3F2BF96921F9B3FC0030E595 /* WeatherNetworkService.swift in Sources */,
 				3F7B3E0A21E74D3800759A69 /* Strideable+Extension.swift in Sources */,
+				3F597E3C2212DDD300BFBE16 /* NetworkTask.swift in Sources */,
 				3F7B3E0D21E74D3800759A69 /* Cancellable.swift in Sources */,
 				3FB8731421FF54CC0095901C /* TableViewCell.swift in Sources */,
+				3F597E432212F17100BFBE16 /* Operators.swift in Sources */,
 				3F7B3E0521E74D3800759A69 /* CGRect+Extensions.swift in Sources */,
+				3F597E3E2212E8E600BFBE16 /* Result.swift in Sources */,
 				3F4ED3A322007053008A2EF0 /* Weather.swift in Sources */,
 				3F7B3DFD21E74D3800759A69 /* ObservableObject.swift in Sources */,
 				3F995AAC21EF64500030B8E4 /* URLSession+ResumeSession.swift in Sources */,
 				3F99E63D21EC8E6800E2C08E /* WeatherViewController.swift in Sources */,
+				3F597E452213169B00BFBE16 /* URLSession+Default.swift in Sources */,
 				3F598CF0220B229B0070022F /* NetworkService.swift in Sources */,
 				3F99E63A21EC850400E2C08E /* ColorRepresentable.swift in Sources */,
 				3F2BF96B21F9B40E0030E595 /* CountryNetworkService.swift in Sources */,
