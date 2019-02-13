@@ -19,20 +19,44 @@ fileprivate struct WeatherConstant {
 
 class WeatherNetworkService {
     
-    private let requestService: RequestService
+    private let requestService: RequestServiceType
     
-    public init(requestService: RequestService = .init()) {
+    private let cancelableProperty = CancellableProperty()
+    
+    public init(requestService:RequestServiceType = RequestService(session: .default)) {
         self.requestService = requestService
     }
     
     // Duplicate
-    public func fillModel(country: Country) {
-        if let url = self.url(with: country.capital) {
-            self.requestService.loadData(url: url) { data, error in
-                data.flatMap { try? JSONDecoder().decode(WeatherJSON.self, from: $0) }
-                    .do { country.weather = weather($0) }
+    public func fillModel(country: Country) -> NetworkTask {
+        
+        guard let url = self.url(with: country.capital) else {
+            let task = NetworkTask(sessionTask: .init())
+            
+            defer {
+                task.cancel()
             }
+            
+            return task
         }
+        
+        let task = self.requestService.scheduledData(url: url) { result in
+            result
+                .analysis(
+                    success: {
+                        let decode = try? JSONDecoder().decode(WeatherJSON.self, from: $0)
+                        decode.do { data in
+                            country.weather.modify {
+                                $0 = weather(data)
+                            }
+                        }
+                },
+                    failure: {_ in }
+            )
+            
+        }
+        self.cancelableProperty.value = task
+        return task
     }
     
     private func url(with capitalName: String) -> URL? {
