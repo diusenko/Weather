@@ -23,7 +23,10 @@ class WeatherNetworkService {
     
     private let cancelableProperty = CancellableProperty()
     
-    public init(requestService:RequestServiceType = RequestService(session: .default)) {
+    public init(
+        requestService: RequestServiceType = RequestService(session: .default),
+        dataBaseService: DataBaseService<WeatherRLM> = DataBaseService(provider: WeatherRLM())
+    ) {
         self.requestService = requestService
     }
     
