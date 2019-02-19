@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         -> Bool
     {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UINavigationController(rootViewController: CountriesViewController())
+        
+        let dataBaseService = DataBaseService(provider: CountryRLM())
+        
+        let networkService = CountryNetworkService(dataBaseService: dataBaseService)
+        
+        let controller = CountriesViewController(networkService: networkService)
+        
+        window.rootViewController = UINavigationController(rootViewController: controller)
         window.makeKeyAndVisible()
         
         self.window = window
