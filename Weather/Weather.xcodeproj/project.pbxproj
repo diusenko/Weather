@@ -30,6 +30,7 @@
 		3F61FBD721E765DC00649F6D /* CountriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61FBD521E765DC00649F6D /* CountriesViewController.xib */; };
 		3F61FBD921E765F700649F6D /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61FBD821E765F700649F6D /* CountriesView.swift */; };
 		3F61FBDC21E7808C00649F6D /* CountryJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61FBDB21E7808C00649F6D /* CountryJSON.swift */; };
+		3F70E353221AB7B400DB7902 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70E352221AB7B400DB7902 /* Realm.swift */; };
 		3F7B3DFB21E74D3800759A69 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE221E74D3800759A69 /* Constant.swift */; };
 		3F7B3DFC21E74D3800759A69 /* CancellableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE321E74D3800759A69 /* CancellableProperty.swift */; };
 		3F7B3DFD21E74D3800759A69 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7B3DE421E74D3800759A69 /* ObservableObject.swift */; };
@@ -64,6 +65,9 @@
 		3FB8731021FF00DF0095901C /* CountriesArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8730F21FF00DF0095901C /* CountriesArrayModel.swift */; };
 		3FB8731221FF50EF0095901C /* UINib+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8731121FF50EF0095901C /* UINib+Extension.swift */; };
 		3FB8731421FF54CC0095901C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8731321FF54CC0095901C /* TableViewCell.swift */; };
+		3FF6173E221ABCE400E1D99E /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF6173D221ABCE400E1D99E /* WeakBox.swift */; };
+		3FF61740221ABD6100E1D99E /* RLMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF6173F221ABD6100E1D99E /* RLMModel.swift */; };
+		3FF61742221ABE2200E1D99E /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF61741221ABE2200E1D99E /* CountryModel.swift */; };
 		77EE0992FFDE68806FD06110 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5244123745B813B0C1D0090F /* Pods_Weather.framework */; };
 		9CB07E9F6AC3C78357C67574 /* Pods_WeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7DBFB1FFD337A44FFCB1F5 /* Pods_WeatherTests.framework */; };
 		BC9773D2826F75C7CBA45EF0 /* Pods_WeatherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71530F23376859C497D5B610 /* Pods_WeatherUITests.framework */; };
@@ -118,6 +122,7 @@
 		3F61FBD521E765DC00649F6D /* CountriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountriesViewController.xib; sourceTree = "<group>"; };
 		3F61FBD821E765F700649F6D /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
 		3F61FBDB21E7808C00649F6D /* CountryJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryJSON.swift; sourceTree = "<group>"; };
+		3F70E352221AB7B400DB7902 /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		3F7B3DE221E74D3800759A69 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3F7B3DE321E74D3800759A69 /* CancellableProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellableProperty.swift; sourceTree = "<group>"; };
 		3F7B3DE421E74D3800759A69 /* ObservableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
@@ -152,6 +157,9 @@
 		3FB8730F21FF00DF0095901C /* CountriesArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesArrayModel.swift; sourceTree = "<group>"; };
 		3FB8731121FF50EF0095901C /* UINib+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINib+Extension.swift"; sourceTree = "<group>"; };
 		3FB8731321FF54CC0095901C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		3FF6173D221ABCE400E1D99E /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
+		3FF6173F221ABD6100E1D99E /* RLMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMModel.swift; sourceTree = "<group>"; };
+		3FF61741221ABE2200E1D99E /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		5244123745B813B0C1D0090F /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7DBFB1FFD337A44FFCB1F5 /* Pods_WeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71530F23376859C497D5B610 /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,8 +287,18 @@
 				3F4ED3A42200706E008A2EF0 /* Country.swift */,
 				3F4ED3A222007053008A2EF0 /* Weather.swift */,
 				3F73ADF2220DB21E00180432 /* JSON */,
+				3FF6173F221ABD6100E1D99E /* RLMModel.swift */,
+				3FF61741221ABE2200E1D99E /* CountryModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3F70E351221AB7A500DB7902 /* RealmSwift */ = {
+			isa = PBXGroup;
+			children = (
+				3F70E352221AB7B400DB7902 /* Realm.swift */,
+			);
+			path = RealmSwift;
 			sourceTree = "<group>";
 		};
 		3F73ADF2220DB21E00180432 /* JSON */ = {
@@ -350,6 +368,7 @@
 				3F4ED3A022006953008A2EF0 /* ObservableWrapper.swift */,
 				3F7B3DE821E74D3800759A69 /* Queue.swift */,
 				3F597E3D2212E8E600BFBE16 /* Result.swift */,
+				3FF6173D221ABCE400E1D99E /* WeakBox.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -366,6 +385,7 @@
 		3F7B3DED21E74D3800759A69 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3F70E351221AB7A500DB7902 /* RealmSwift */,
 				3F7B3DEE21E74D3800759A69 /* CoreGraphics */,
 				3F7B3DF221E74D3800759A69 /* Foundation */,
 				3F7B3DF021E74D3800759A69 /* UIKit */,
@@ -590,16 +610,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		091E847BAD05C4EBCF3A7C94 /* [CP] Check Pods Manifest.lock */ = {
@@ -671,6 +695,7 @@
 				3F4ED3A122006953008A2EF0 /* ObservableWrapper.swift in Sources */,
 				3F8C155F21F0CFF30053C675 /* Date+CurrentTimeDescription.swift in Sources */,
 				3F7B3DFB21E74D3800759A69 /* Constant.swift in Sources */,
+				3F70E353221AB7B400DB7902 /* Realm.swift in Sources */,
 				3F61FBD921E765F700649F6D /* CountriesView.swift in Sources */,
 				3F7B3E0321E74D3800759A69 /* Duration.swift in Sources */,
 				3F7B3E0021E74D3800759A69 /* F.swift in Sources */,
@@ -682,6 +707,7 @@
 				3F99E64A21ECCF1500E2C08E /* WeatherJSON.swift in Sources */,
 				3FA8754A21F5E42F001642B7 /* DateFormatter+CurrentTime.swift in Sources */,
 				3F61FBD621E765DC00649F6D /* CountriesViewController.swift in Sources */,
+				3FF61742221ABE2200E1D99E /* CountryModel.swift in Sources */,
 				3F7B3E0721E74D3800759A69 /* DispatchQueue+Extensions.swift in Sources */,
 				3F7B3E0621E74D3800759A69 /* UIView+CornerRadius.swift in Sources */,
 				3F99E63821EC819F00E2C08E /* RequestService.swift in Sources */,
@@ -699,6 +725,7 @@
 				3F7B3E0A21E74D3800759A69 /* Strideable+Extension.swift in Sources */,
 				3F597E3C2212DDD300BFBE16 /* NetworkTask.swift in Sources */,
 				3F7B3E0D21E74D3800759A69 /* Cancellable.swift in Sources */,
+				3FF6173E221ABCE400E1D99E /* WeakBox.swift in Sources */,
 				3FB8731421FF54CC0095901C /* TableViewCell.swift in Sources */,
 				3F597E432212F17100BFBE16 /* Operators.swift in Sources */,
 				3F7B3E0521E74D3800759A69 /* CGRect+Extensions.swift in Sources */,
@@ -711,6 +738,7 @@
 				3F598CF0220B229B0070022F /* NetworkService.swift in Sources */,
 				3F99E63A21EC850400E2C08E /* ColorRepresentable.swift in Sources */,
 				3F2BF96B21F9B40E0030E595 /* CountryNetworkService.swift in Sources */,
+				3FF61740221ABD6100E1D99E /* RLMModel.swift in Sources */,
 				3FB8731021FF00DF0095901C /* CountriesArrayModel.swift in Sources */,
 				3F7B3E0221E74D3800759A69 /* Atomic.swift in Sources */,
 			);
