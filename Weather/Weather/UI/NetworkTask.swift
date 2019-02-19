@@ -22,4 +22,14 @@ class NetworkTask: Cancellable {
         self.task.cancel()
         self.isCancelled = true
     }
+    
+    public convenience init(sessionTask: URLSessionTask?) {
+        if let sessionTask = sessionTask {
+            self.init(sessionTask: sessionTask)
+        } else {
+            let sessionTask = URLSessionTask()
+            self.init(sessionTask: sessionTask)
+            self.cancel()
+        }
+    }
 }
