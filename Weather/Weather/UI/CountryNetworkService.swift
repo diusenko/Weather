@@ -12,9 +12,14 @@ class CountryNetworkService {
     
     private let requestService: RequestServiceType
     private let url = URL(string: "https://restcountries.eu/rest/v2/all")
+    private let dataBaseService: DataBaseService<CountryRLM>
     
-    init(requestService: RequestServiceType = RequestService(session: .default)) {
+    init(
+        requestService: RequestServiceType = RequestService(session: .default),
+        dataBaseService: DataBaseService<CountryRLM>
+    ) {
         self.requestService = requestService
+        self.dataBaseService = dataBaseService
     }
     
 //    func scheduledData(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask {
@@ -37,7 +42,13 @@ class CountryNetworkService {
             result.analysis(
                 success: { data in
                     let decoder = try? JSONDecoder().decode([CountryJSON].self, from: data)
-                    decoder.do { model.append(countries($0)) }
+                    //FixIT
+                    decoder.do {
+                        model.append(countries($0))
+                        $0.forEach {
+                            self.dataBaseService.dataBaseProvider.write(storage: RLMCountryJSON(json: $0))
+                        }
+                    }
             },
                 failure: { print($0) }
             )
