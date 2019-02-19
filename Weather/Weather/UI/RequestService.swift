@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum RequestServiceError: Error {
     case unknown
@@ -26,20 +27,26 @@ class RequestService: RequestServiceType {
         self.session = session
     }
     
-    public func scheduledRequest(url: URL, completion: @escaping (Result<Data, RequestServiceError>) -> ()) -> NetworkTask {
-        let task = self.session.dataTask(with: url) { (data, response, error) in
+    public func scheduledRequest(
+        url: URL,
+        completion: @escaping (Result<Data, RequestServiceError>) -> ()
+    )
+        -> NetworkTask
+    {
+        let request = Alamofire.request(url).response { response in
             completion(
                 Result(
-                    value: data,
-                    error: error.map { .failed($0) },
+                    value: response.data,
+                    error: response.error.map { .failed($0) },
                     default: .unknown
                 )
             )
         }
         
-        let networkTask = NetworkTask(sessionTask: task)
-        task.resume()
+        let task = request.task
         
-        return networkTask
+        task?.resume()
+        
+        return NetworkTask(sessionTask: task)
     }
 }
