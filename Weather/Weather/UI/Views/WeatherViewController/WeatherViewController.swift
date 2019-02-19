@@ -16,7 +16,7 @@ class WeatherViewController: UIViewController, RootViewRepresentable {
     private let weatherManager: WeatherNetworkService
     private let task = CancellableProperty()
     
-    init(country: Country, manager: WeatherNetworkService = .init()) {
+    init(country: Country, manager: WeatherNetworkService = WeatherNetworkService()) {
         self.country = country
         self.weatherManager = manager
         
