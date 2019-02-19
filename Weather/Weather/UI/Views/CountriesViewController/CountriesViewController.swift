@@ -20,7 +20,7 @@ class CountriesViewController: UIViewController, RootViewRepresentable {
     
     private let task = CancellableProperty()
     
-    init(model: CountriesArrayModel = .init(), networkService: CountryNetworkService = .init()) {
+    init(model: CountriesArrayModel = .init(), networkService: CountryNetworkService) {
         self.networkService = networkService
         self.model = model
         super.init(nibName: nil, bundle: nil)
