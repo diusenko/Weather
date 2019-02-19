@@ -74,3 +74,15 @@ public func flip<A, B, C>(_ f: @escaping (A) -> (B) -> C) -> (B) -> (A) -> C {
 public func flip<A, B, C>(_ f: @escaping (A, B) -> C) -> (B, A) -> C {
     return { f($1, $0) }
 }
+
+public func call<Value>(_ action: () -> Value) -> Value {
+    return action()
+}
+
+public func sideEffect<Value>(action: @escaping (Value) -> ()) -> (Value) -> Value {
+    return {
+        action($0)
+        
+        return $0
+    }
+}
