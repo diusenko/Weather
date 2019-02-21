@@ -10,15 +10,13 @@ import Foundation
 
 public class Weather {
     
+    public let id: String
     public let temperature: Int
-    public let minTemperature: Int
-    public let maxTemperature: Int
     public let date: Date
     
-    public init(temperature: Int, date: Date, minTemperature: Int, maxTemperature: Int) {
+    public init(id: String, temperature: Int, date: Date) {
         self.temperature = temperature
-        self.minTemperature = minTemperature
-        self.maxTemperature = maxTemperature
         self.date = date
+        self.id = id
     }
 }
