@@ -12,5 +12,4 @@ public struct CountryJSON: Decodable {
     
     public let name: String
     public let capital: String
-    public let alpha2Code: String
 }
