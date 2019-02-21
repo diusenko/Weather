@@ -19,75 +19,87 @@ public class RLMModel: Object {
 
 protocol DataBaseProvider {
     
+    associatedtype Model
     associatedtype Storage
     
-    func read(id: String) -> Storage?
-    func write(storage: Storage)
+    func read(id: String) -> Model?
+    func read() -> [Model]?
+    func write(model: Model)
 }
 
 class DataBaseService<Provider: DataBaseProvider> {
     
-    public let dataBaseProvider: Provider
+    public let value: Provider
     
     init(provider: Provider) {
-        self.dataBaseProvider = provider
+        self.value = provider
     }
 }
 
-class CountryRLM: DataBaseProvider {
+class DataRealm<StorageType: Object>: DataBaseProvider
+    where StorageType: RealmModelSerializable
+{
     
-    typealias Storage = RLMCountryJSON
+    typealias Storage = StorageType
+    typealias Model = StorageType.ConvertableType
     
-    func read() -> Results<RLMCountryJSON>? {
-        return Realm.current?.objects(RLMCountryJSON.self)
+    open func read(id: String) -> Model? {
+        let values = Realm.current?.object(ofType: StorageType.self, forPrimaryKey: id)
+        
+        return values.map { $0.converted() }
     }
     
-    func read(id: String) -> RLMCountryJSON? {
-        return Realm.current?.object(ofType: RLMCountryJSON.self, forPrimaryKey: id)
+    open func read() -> [Model]? {
+        let results = Realm.current?.objects(StorageType.self)
+        
+        return results.map { $0.map { $0.converted() } }
     }
     
-    func write(storage: RLMCountryJSON) {
+    open func write(model: Model) {
         Realm.write {
-            $0.add(storage, update: true)
+            let value = Storage(model: model)
+            
+            $0.add(value, update: true)
         }
     }
 }
 
-class WeatherRLM: DataBaseProvider {
-    
-    typealias Storage = RLMWeatherJSON
+class CountryDataRLM: DataRealm<RLMCountry> { }
 
-    func read(id: String) -> RLMWeatherJSON? {
-       return Realm.current?.object(ofType: RLMWeatherJSON.self, forPrimaryKey: id)
-    }
+class WeatherDataRLM: DataRealm<RLMWeather> { }
+
+protocol RealmModelSerializable {
     
-    func write(storage: RLMWeatherJSON) {
-        Realm.write {
-            $0.add(storage, update: true)
-        }
-    }
+    associatedtype ConvertableType
     
+    init(model: ConvertableType)
+    
+    func converted() -> ConvertableType
 }
 
-class RLMWeatherJSON: RLMModel {
+class RLMWeather: RLMModel, RealmModelSerializable {
     
-    @objc dynamic var temperature = 0.0
+    @objc dynamic var temperature = 0
     
-    @objc dynamic var dt = 0.0
+    @objc dynamic var date = Date()
     
-    convenience init(id: String, temperature: Double, date: Double) {
+    convenience init(id: String, temperature: Int, date: Date) {
         self.init()
         self.id = id
         self.temperature = temperature
-        self.dt = date
+        self.date = date
     }
     
-    convenience init(json: WeatherJSON) {
-        self.init(id: json.sys.country, temperature: json.main.temperature, date: json.dt)
+    required convenience init(model: Weather) {
+        self.init(id: model.id, temperature: model.temperature, date: model.date)
+    }
+    
+    func converted() -> Weather {
+        return Weather(id: self.id, temperature: self.temperature, date: self.date)
     }
 }
 
-class RLMCountryJSON: RLMModel {
+class RLMCountry: RLMModel, RealmModelSerializable {
     
     @objc dynamic var name = ""
     
@@ -100,7 +112,11 @@ class RLMCountryJSON: RLMModel {
         self.capital = capital
     }
     
-    convenience init(json: CountryJSON) {
-        self.init(id: json.alpha2Code, name: json.name, capital: json.capital)
+    required convenience init(model: Country) {
+        self.init(id: model.id, name: model.name, capital: model.capital)
+    }
+    
+    func converted() -> Country {
+        return Country(id: self.id, name: self.name, capital: self.capital)
     }
 }
