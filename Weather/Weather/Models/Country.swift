@@ -10,13 +10,15 @@ import Foundation
 
 public class Country {
     
+    public let id: String
     public let name: String
     public let capital: String
     public var weather: ObservableWrapper<Weather?>
     
-    public init(name: String, capitalName: String, weather: Weather? = nil) {
+    public init(id: String, name: String, capital: String, weather: Weather? = nil) {
         self.name = name
-        self.capital = capitalName
+        self.capital = capital
         self.weather = ObservableWrapper(weather)
+        self.id = id
     }
 }
