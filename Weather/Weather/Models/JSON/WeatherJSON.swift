@@ -12,7 +12,6 @@ public struct WeatherJSON: Decodable {
     
     public let main: Main
     public let dt: Double
-    public let sys: Sys
     
     public struct Main: Decodable {
         
@@ -25,10 +24,5 @@ public struct WeatherJSON: Decodable {
             case temperatureMin = "temp_min"
             case temperatureMax = "temp_max"
         }
-    }
-    
-    public struct Sys: Codable {
-        
-        let country: String
     }
 }
