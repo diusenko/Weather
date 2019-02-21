@@ -29,7 +29,6 @@ class NetworkTask: Cancellable {
         } else {
             let sessionTask = URLSessionTask()
             self.init(sessionTask: sessionTask)
-            self.cancel()
         }
     }
 }
