@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 fileprivate struct WeatherConstant {
     
@@ -17,17 +18,19 @@ fileprivate struct WeatherConstant {
     }
 }
 
-class WeatherNetworkService {
+class WeatherNetworkService<Type: DataBaseProvider>
+where Type.Model == Weather {
     
     private let requestService: RequestServiceType
-    
+    private let dataBaseService: DataBaseService<Type>
     private let cancelableProperty = CancellableProperty()
     
     public init(
         requestService: RequestServiceType = RequestService(session: .default),
-        dataBaseService: DataBaseService<WeatherRLM> = DataBaseService(provider: WeatherRLM())
+        dataBaseService: DataBaseService<Type>
     ) {
         self.requestService = requestService
+        self.dataBaseService = dataBaseService
     }
     
     // Duplicate
@@ -49,11 +52,16 @@ class WeatherNetworkService {
                     success: {
                         let decode = try? JSONDecoder().decode(WeatherJSON.self, from: $0)
                         decode.do { data in
+                            
+                            let weatherData = weather(data)
+                            
                             country.weather.modify {
-                                $0 = weather(data)
+                                $0 = weatherData
                             }
+                            
+                            self.dataBaseService.value.write(model: weatherData)
                         }
-                },
+                    },
                     failure: {_ in }
             )
             
@@ -73,9 +81,8 @@ class WeatherNetworkService {
 fileprivate let weather: (WeatherJSON) -> Weather = { json in
     let main = json.main
     return Weather(
+        id: "",
         temperature: Int(main.temperature),
-        date: Date(timeIntervalSince1970: json.dt),
-        minTemperature: Int(main.temperatureMin),
-        maxTemperature: Int(main.temperatureMax)
+        date: Date(timeIntervalSince1970: json.dt)
     )
 }
